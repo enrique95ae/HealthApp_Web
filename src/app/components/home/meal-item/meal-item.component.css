@@ -1,0 +1,83 @@
+.meal-item {
+    background-color: #EAFAE7;
+    /* Background color */
+    display: flex;
+    /* Flexbox layout */
+    padding: 10px;
+    /* Padding */
+    border-radius: 25px;
+    /* Rounded corners */
+    align-items: center;
+    /* Center items vertically */
+    margin-bottom: 10px;
+    /* Space between meal items */
+}
+
+.time-column {
+    flex: 0 0 20%;
+    /* 20% width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-circle {
+    background-color: white;
+    /* White background for the circle */
+    border-radius: 50%;
+    /* Circular shape */
+    width: 100px;
+    /* Increased width */
+    height: 100px;
+    /* Increased height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    /* Bold text */
+    font-size: 1.2rem;
+    /* Adjust font size */
+}
+
+.details-column {
+    flex: 1 0 60%;
+    /* 60% width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* Space out rows */
+    padding-left: 20px;
+    /* Padding on the left */
+}
+
+.title-row,
+.calories-row,
+.details-button-row {
+    margin-bottom: 5px;
+    /* Space between rows */
+}
+
+.details-button {
+    background-color: #53BD63;
+    /* Button background color */
+    color: white;
+    /* Button text color */
+    border: none;
+    /* No border */
+    padding: 5px 10px;
+    /* Padding */
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+}
+
+.grade-column {
+    flex: 0 0 20%;
+    /* 20% width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    /* Bold text */
+}

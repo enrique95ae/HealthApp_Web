@@ -1,0 +1,45 @@
+/* header.component.css */
+
+.navbar {
+    background-color: #EAFAE7;
+    /* Light gray background color */
+}
+
+.navbar-brand span {
+    color: #2F594F;
+    /* Updated color for the text */
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: larger;
+}
+
+.nav-link {
+    color: #53BD63;
+    /* Color for the links */
+}
+
+.nav-link:hover {
+    color: #53BD63;
+    /* Hover effect color */
+}
+
+.logo {
+    height: 80px;
+    /* Twice the size of the original */
+    width: 80px;
+    /* Ensure the width is the same to make it circular */
+    border-radius: 50%;
+    /* Make it circular */
+    object-fit: cover;
+    /* Ensure the image fits within the circular frame */
+    background-color: white;
+}
+
+.container {
+    max-width: 100%;
+}
+
+.active-link {
+    color: #FF8042 !important;
+    /* Color for the active link */
+}

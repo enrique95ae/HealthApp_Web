@@ -1,0 +1,58 @@
+.user-container {
+    background-color: #F4FDF2;
+    /* Background color */
+    border-radius: 25px;
+    /* Rounded corners */
+    display: flex;
+    /* Flexbox layout */
+    padding: 20px;
+    /* Padding */
+    max-width: 800px;
+    /* Optional: max width to limit the size */
+    margin: 0 auto;
+    /* Center the component */
+}
+
+.profile-pic-container {
+    flex: 0 0 30%;
+    /* 30% width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-pic {
+    width: 150px;
+    /* Fixed width */
+    height: 150px;
+    /* Fixed height */
+    border-radius: 50%;
+    /* Circular image */
+    object-fit: cover;
+    /* Cover fit */
+}
+
+.user-info {
+    flex: 1 0 70%;
+    /* 70% width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 20px;
+}
+
+.user-row {
+    display: flex;
+    margin-bottom: 10px;
+    /* Space between rows */
+}
+
+.user-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.user-data {
+    color: #2F594F;
+    /* Text color */
+}

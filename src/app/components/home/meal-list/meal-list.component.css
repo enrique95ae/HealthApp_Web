@@ -1,0 +1,13 @@
+.meal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Space between meal items */
+    background-color: #F4FDF2;
+    /* Background color */
+    border-radius: 25px;
+    /* Rounded corners */
+    padding: 20px;
+    /* Optional: padding inside the container */
+    margin-top: 25px;
+}

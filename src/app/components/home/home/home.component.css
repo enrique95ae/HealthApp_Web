@@ -1,0 +1,25 @@
+.home-container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 20px;
+    /* Space between columns */
+    padding: 20px;
+    background-color: white;
+    /* Light green background */
+}
+
+.column {
+    background-color: transparent;
+    /* Make columns transparent */
+    border-radius: 10px;
+    /* Optional: rounded corners for columns */
+    padding: 0;
+    /* Remove padding to align with user component */
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        grid-template-columns: 1fr;
+        /* Switch to one column layout */
+    }
+}
