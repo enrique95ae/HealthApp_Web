@@ -4,10 +4,16 @@
     gap: 10px;
     /* Space between meal items */
     background-color: #F4FDF2;
-    /* Background color */
     border-radius: 25px;
-    /* Rounded corners */
     padding: 20px;
-    /* Optional: padding inside the container */
-    margin-top: 25px;
+    margin-top: 0;
+    /* Remove any extra margin */
+    height: 100%;
+    /* Ensure it takes full height of the container */ 
+}
+
+.meals-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
 }

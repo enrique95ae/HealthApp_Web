@@ -1,0 +1,27 @@
+.progression-container {
+    width: 100%;
+    /* Take all available width */
+    background-color: #F4FDF2;
+    border-radius: 25px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    height: 100%;
+    /* Ensure it takes full height of the container */
+}
+
+.progression-title {
+    margin-bottom: 10px;
+    /* Space below the title */
+}
+
+canvas {
+    width: 100% !important;
+    /* Ensure the canvas respects the container width */
+    height: auto !important;
+    /* Maintain the aspect ratio */
+}

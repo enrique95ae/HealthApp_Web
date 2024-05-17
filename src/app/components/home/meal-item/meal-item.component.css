@@ -11,6 +11,8 @@
     /* Center items vertically */
     margin-bottom: 10px;
     /* Space between meal items */
+    overflow: hidden;
+    /* Prevent internal scrolling */
 }
 
 .time-column {
@@ -27,16 +29,16 @@
     border-radius: 50%;
     /* Circular shape */
     width: 100px;
-    /* Increased width */
+    /* Width */
     height: 100px;
-    /* Increased height */
+    /* Height */
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     /* Bold text */
     font-size: 1.2rem;
-    /* Adjust font size */
+    /* Font size */
 }
 
 .details-column {

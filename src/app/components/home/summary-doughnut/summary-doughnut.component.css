@@ -1,0 +1,26 @@
+.doughnut-container {
+    width: 100%;
+    max-width: 300px;
+    background-color: #EAFAE7;
+    border-radius: 25px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    /* Ensure title and chart are stacked vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.doughnut-title {
+    margin-bottom: 10px;
+    /* Space below the title */
+    font-size: medium;
+}
+
+canvas {
+    width: 100% !important;
+    /* Ensure the canvas respects the container width */
+    height: auto !important;
+    /* Maintain the aspect ratio */
+}

@@ -1,0 +1,41 @@
+.summary-container {
+    padding: 20px;
+    /* Padding around the container */
+    background-color: #F4FDF2;
+    /* Light background color */
+    border-radius: 25px;
+    /* Rounded corners */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ensure it takes full height of the container */
+}
+
+.summary-title {
+    text-align: center;
+    /* Center the title */
+    margin-bottom: 20px;
+    /* Space below the title */
+    font-size: 1.5rem;
+    /* Font size of the title */
+}
+
+.summary-content {
+    display: flex;
+    /* Flexbox layout for side-by-side components */
+    justify-content: space-around;
+    /* Space around the components */
+    gap: 20px;
+    /* Space between the components */
+    flex: 1;
+    /* Allow it to grow and fill the available space */
+}
+
+@media (max-width: 768px) {
+    .summary-content {
+        flex-direction: column;
+        /* Stack components vertically on small screens */
+        align-items: center;
+        /* Center the components */
+    }
+}

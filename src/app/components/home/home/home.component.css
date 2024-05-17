@@ -1,25 +1,67 @@
 .home-container {
-    display: grid;
-    grid-template-columns: 40% 60%;
-    gap: 20px;
-    /* Space between columns */
-    padding: 20px;
-    background-color: white;
-    /* Light green background */
+    display: flex;
+    height: 100vh;
+    /* Full viewport height */
+    overflow: hidden;
+    /* Prevent scrolling */
+    padding: 10px;
+    /* Optional: padding around the container */
+    box-sizing: border-box;
+    /* Ensure padding is included in the height calculation */
 }
 
 .column {
-    background-color: transparent;
-    /* Make columns transparent */
-    border-radius: 10px;
-    /* Optional: rounded corners for columns */
-    padding: 0;
-    /* Remove padding to align with user component */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-@media (max-width: 768px) {
-    .home-container {
-        grid-template-columns: 1fr;
-        /* Switch to one column layout */
-    }
+.column-1 {
+    flex: 0 0 40%;
+    /* 40% width */
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    /* Space between app-user and app-meal-list */
+    overflow: hidden;
+    /* Prevent scrolling */
+}
+
+.column-2 {
+    flex: 0 0 60%;
+    /* 60% width */
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    /* Space between app-summary and app-progression */
+    overflow: hidden;
+    /* Prevent scrolling */
+}
+
+app-user {
+    overflow: hidden;
+    /* Prevent internal scrolling */
+    margin: 20px;
+    /* Remove margin between components */
+}
+
+app-meal-list {
+    overflow: hidden;
+    /* Prevent internal scrolling */
+    margin: 20px;
+    /* Remove margin between components */
+}
+
+app-summary {
+    overflow: hidden;
+    /* Prevent internal scrolling */
+    margin: 20px;
+    /* Remove margin between components */
+}
+
+app-progression {
+    overflow: hidden;
+    /* Prevent internal scrolling */
+    margin: 20px;
+    /* Remove margin between components */
 }
