@@ -1,23 +1,26 @@
-<div class="user-container">
+<div *ngIf="userData" class="user-container">
   <div class="profile-pic-container">
     <img src="assets/profile.png" alt="Profile Picture" class="profile-pic" />
+    <button (click)="logout()" class="logout-button">Logout</button>
   </div>
   <div class="user-info">
     <div class="user-row">
       <span class="user-label">Name:</span>
-      <span class="user-data">John Doe</span>
+      <span class="user-data">{{ userData.name }}</span>
     </div>
     <div class="user-row">
       <span class="user-label">Age:</span>
-      <span class="user-data">30</span>
+      <span class="user-data">{{ userData.age }}</span>
     </div>
     <div class="user-row">
-      <span class="user-label">Weight/Height:</span>
-      <span class="user-data">70kg/175cm</span>
+      <span class="user-label">Weight & Height:</span>
+      <span class="user-data"
+        >{{ userData.weight }} kg, {{ userData.height }} cm</span
+      >
     </div>
     <div class="user-row">
       <span class="user-label">Current Goal:</span>
-      <span class="user-data">Lose 5kg</span>
+      <span class="user-data">{{ userData.goal }}</span>
     </div>
   </div>
 </div>

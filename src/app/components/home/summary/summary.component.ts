@@ -3,8 +3,6 @@ import { SummaryDoughnutComponent } from '../summary-doughnut/summary-doughnut.c
 
 @Component({
   selector: 'app-summary',
-  standalone: true,
-  imports: [SummaryDoughnutComponent],
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css']
 })

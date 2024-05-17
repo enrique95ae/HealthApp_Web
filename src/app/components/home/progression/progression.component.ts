@@ -5,7 +5,6 @@ Chart.register(...registerables);
 
 @Component({
   selector: 'app-progression',
-  standalone: true,
   templateUrl: './progression.component.html',
   styleUrls: ['./progression.component.css']
 })

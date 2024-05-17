@@ -5,7 +5,6 @@ Chart.register(...registerables);
 
 @Component({
   selector: 'app-summary-doughnut',
-  standalone: true,
   templateUrl: './summary-doughnut.component.html',
   styleUrls: ['./summary-doughnut.component.css']
 })
