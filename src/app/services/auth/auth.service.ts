@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../../models/user.model';  // Adjust the path as needed
 
 @Injectable({
   providedIn: 'root'
@@ -7,18 +8,18 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.hasUser());
   public loggedIn$ = this.loggedIn.asObservable();
-  private userData: any = this.getStoredUserData();
+  private userData: User | null = this.getStoredUserData();
 
   private hasUser(): boolean {
     return !!localStorage.getItem('user');
   }
 
-  private getStoredUserData(): any {
+  private getStoredUserData(): User | null {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
 
-  login(user: any): void {
+  login(user: User): void {
     console.log('Setting user data in localStorage and updating state:', user);  // Debugging statement
     localStorage.setItem('user', JSON.stringify(user));
     this.userData = user;
@@ -32,7 +33,7 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
-  getUserData(): any {
+  getUserData(): User | null {
     return this.userData;
   }
 }

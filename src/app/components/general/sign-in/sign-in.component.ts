@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../../../services/users/users.service';
 import { AuthService } from '../../../services/auth/auth.service';
+import { User } from '../../../models/user.model';  // Adjust the path as needed
 
 @Component({
   selector: 'app-sign-in',
@@ -26,7 +27,7 @@ export class SignInComponent {
     if (this.username && this.password) {
       console.log('Attempting login with', this.username, this.password);  // Debugging statement
       this.usersService.login(this.username, this.password).subscribe({
-        next: (response) => {
+        next: (response: User) => {
           console.log('Login successful, response:', response);  // Debugging statement
           this.authService.login(response);
         },

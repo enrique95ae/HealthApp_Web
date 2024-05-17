@@ -18,7 +18,8 @@ import { ProgressionComponent } from './components/home/progression/progression.
 import { SignInComponent } from './components/general/sign-in/sign-in.component';
 import { UserComponent } from './components/home/user/user.component';
 
-import { AuthService } from './services/auth/auth.service';  // Add this import
+import { AuthService } from './services/auth/auth.service';
+import { UsersService } from './services/users/users.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService],  // Ensure AuthService is provided
+  providers: [AuthService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
