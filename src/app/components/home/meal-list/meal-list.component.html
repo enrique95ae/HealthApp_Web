@@ -1,7 +1,6 @@
 <div class="meal-list">
-  <h2 class="meals-title">Today's meals</h2>
-  <app-meal-item></app-meal-item>
-  <app-meal-item></app-meal-item>
-  <app-meal-item></app-meal-item>
-  <!-- Add more <app-meal-item> as needed -->
+  <h2 class="meals-title">Today's Meals</h2>
+  <div *ngFor="let meal of meals">
+    <app-meal-item [meal]="meal"></app-meal-item>
+  </div>
 </div>

@@ -20,6 +20,7 @@ import { UserComponent } from './components/home/user/user.component';
 
 import { AuthService } from './services/auth/auth.service';
 import { UsersService } from './services/users/users.service';
+import { MealsService } from './services/meals/meals.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -50,7 +51,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, UsersService],
+  providers: [AuthService, UsersService, MealsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

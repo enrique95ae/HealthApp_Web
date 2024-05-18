@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../../models/user.model';  // Adjust the path as needed
 
@@ -8,6 +8,7 @@ import { User } from '../../models/user.model';  // Adjust the path as needed
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.hasUser());
   public loggedIn$ = this.loggedIn.asObservable();
+  public userLoggedIn = new EventEmitter<User>();
   private userData: User | null = this.getStoredUserData();
 
   private hasUser(): boolean {
@@ -24,6 +25,7 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     this.userData = user;
     this.loggedIn.next(true);
+    this.userLoggedIn.emit(user);  // Emit the event
   }
 
   logout(): void {
