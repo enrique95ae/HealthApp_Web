@@ -1,0 +1,57 @@
+<div class="add-meal-container">
+  <div class="form-section">
+    <div class="form-group">
+      <label for="mealTitle">Title:</label>
+      <input
+        type="text"
+        id="mealTitle"
+        class="form-control"
+        [(ngModel)]="mealTitle"
+      />
+    </div>
+    <div class="form-group time-group">
+      <label for="mealTime">Time:</label>
+      <div class="time-selection">
+        <input
+          type="time"
+          id="mealTime"
+          class="form-control"
+          [(ngModel)]="mealTime"
+          (change)="convertTo12HourFormat()"
+        />
+        <label for="mealPeriod" class="sr-only">AM/PM</label>
+        <select
+          id="mealPeriod"
+          [(ngModel)]="mealPeriod"
+          class="form-control ampm-selector"
+        >
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group rating-group">
+      <label for="mealRating">Rating:</label>
+      <select id="mealRating" [(ngModel)]="mealRating" class="form-control">
+        <option *ngFor="let rating of ratings" [value]="rating">
+          {{ rating }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Ingredients:</label>
+      <div class="components-list">
+        <app-add-food
+          *ngFor="let food of foods"
+          [(foodName)]="food.foodName"
+          [(portionSize)]="food.portionSize"
+        ></app-add-food>
+      </div>
+    </div>
+    <button class="add-food-button" (click)="addFood()">Add Food</button>
+  </div>
+  <div class="bottom-fixed">
+    <app-meal-summary></app-meal-summary>
+    <!-- Placeholder for the meal summary component -->
+  </div>
+</div>
