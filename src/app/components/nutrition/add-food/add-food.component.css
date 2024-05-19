@@ -1,46 +1,52 @@
 .add-food-container {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.food-details {
-    display: flex;
+    flex-direction: row;
     gap: 10px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    flex: 1;
-}
-
-.add-food-container label {
-    margin-top: 10px;
-}
-
-.form-control {
+    background-color: #EAFAE7;
     padding: 10px;
-    margin-bottom: 10px;
+    border-radius: 25px;
+    position: relative;
 }
 
-.suggestions {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    padding: 5px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    background-color: white;
-    position: absolute;
-    z-index: 1000;
-    width: 100%;
+    flex-grow: 1;
 }
 
-.suggestions li {
+.suggestions-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.suggestions-list li {
     padding: 10px;
     cursor: pointer;
 }
 
-.suggestions li:hover {
-    background-color: #eee;
+.suggestions-list li:hover {
+    background-color: #f0f0f0;
 }

@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 import { FoodsService } from '../../../services/foods/foods.service';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Food } from '../../../models/meal.model';
 
 @Component({
   selector: 'app-add-food',
@@ -9,40 +10,61 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
   styleUrls: ['./add-food.component.css']
 })
 export class AddFoodComponent implements OnInit {
-  @Input() foodName: string = '';
-  @Output() foodNameChange = new EventEmitter<string>();
-  
-  @Input() portionSize: number = 0;
-  @Output() portionSizeChange = new EventEmitter<number>();
+  @Input() food!: Food;
+  @Output() validFood = new EventEmitter<boolean>();
+  @Output() foodChange = new EventEmitter<Food>();
 
-  suggestions: any[] = [];
-  searchTerms = new Subject<string>();
+  foodNameControl: FormControl;
+  portionEatenControl: FormControl;
+  suggestions: Food[] = [];
 
-  constructor(private foodsService: FoodsService) {}
+  constructor(private foodsService: FoodsService) {
+    this.foodNameControl = new FormControl('');
+    this.portionEatenControl = new FormControl('');
+  }
 
   ngOnInit(): void {
-    this.searchTerms.pipe(
-      debounceTime(300), // wait 300ms after each keystroke before considering the term
-      distinctUntilChanged(), // ignore new term if same as previous term
-      switchMap((term: string) => this.foodsService.searchFoods(term)), // switch to new search observable each time the term changes
-    ).subscribe(data => {
-      this.suggestions = data;
+    this.foodNameControl.setValue(this.food.Name);
+    this.portionEatenControl.setValue(this.food.PortionEaten);
+
+    this.foodNameControl.valueChanges.pipe(debounceTime(300)).subscribe(value => {
+      if (value !== null) {
+        console.log('Food name control value changed:', value);
+        this.foodsService.getFoodSuggestions(value).subscribe(suggestions => {
+          this.suggestions = suggestions;
+          console.log('Food suggestions received:', suggestions);
+        });
+      }
+      this.food.Name = value || '';
+      this.foodChange.emit(this.food);
+      this.validateFood();
+    });
+
+    this.portionEatenControl.valueChanges.pipe(debounceTime(1000)).subscribe(value => {
+      const portion = value !== null ? parseFloat(value) : 0;
+      this.food.PortionEaten = portion;
+      console.log('Portion eaten control value changed:', value);
+      this.foodChange.emit(this.food);
+      this.validateFood();
     });
   }
 
-  onFoodNameInput(): void {
-    this.searchTerms.next(this.foodName);
+  selectSuggestion(suggestion: Food): void {
+    this.food = suggestion;
+    this.foodNameControl.setValue(suggestion.Name);
+    console.log('Suggestion selected:', suggestion);
+    this.foodsService.getFoodDetails(suggestion.Id).subscribe(foodDetails => {
+      this.food = { ...this.food, ...foodDetails };
+      console.log('Food details received:', foodDetails);
+      this.foodChange.emit(this.food);
+      this.suggestions = [];
+      this.validateFood();
+    });
   }
 
-  selectSuggestion(suggestion: any): void {
-    this.foodName = suggestion.Name;
-    this.portionSize = suggestion.PortionSize;
-    this.foodNameChange.emit(this.foodName);
-    this.portionSizeChange.emit(this.portionSize);
-    this.suggestions = [];
-  }
-
-  isFilled(): boolean {
-    return this.foodName.trim() !== '' && this.portionSize > 0;
+  validateFood(): void {
+    const isValid = this.foodNameControl.valid && this.portionEatenControl.valid && !!this.food.Name && !!this.food.PortionEaten;
+    console.log('Food validation:', isValid);
+    this.validFood.emit(isValid);
   }
 }

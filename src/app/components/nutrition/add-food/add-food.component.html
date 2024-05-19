@@ -1,31 +1,28 @@
 <div class="add-food-container">
-  <div class="food-details">
-    <div class="form-group">
-      <label for="foodName">Food Name:</label>
-      <input
-        type="text"
-        id="foodName"
-        [(ngModel)]="foodName"
-        (ngModelChange)="onFoodNameInput()"
-        class="form-control"
-      />
-      <ul *ngIf="suggestions.length > 0" class="suggestions">
-        <li
-          *ngFor="let suggestion of suggestions"
-          (click)="selectSuggestion(suggestion)"
-        >
-          {{ suggestion.Name }}
-        </li>
-      </ul>
-    </div>
-    <div class="form-group">
-      <label for="portionSize">Portion Size (g):</label>
-      <input
-        type="number"
-        id="portionSize"
-        [(ngModel)]="portionSize"
-        class="form-control"
-      />
-    </div>
+  <div class="form-row">
+    <label for="foodName">Food name:</label>
+    <input
+      id="foodName"
+      type="text"
+      [formControl]="foodNameControl"
+      placeholder="e.g. Chicken breast"
+    />
+    <ul *ngIf="suggestions.length > 0" class="suggestions-list">
+      <li
+        *ngFor="let suggestion of suggestions"
+        (click)="selectSuggestion(suggestion)"
+      >
+        {{ suggestion.Name }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="form-row">
+    <label for="portionEaten">Portion eaten (g):</label>
+    <input
+      id="portionEaten"
+      type="number"
+      [formControl]="portionEatenControl"
+    />
   </div>
 </div>

@@ -1,4 +1,12 @@
-.meal-summary {
-    width: 100%;
-    text-align: center;
+/* meal-summary.component.css */
+.meal-summary-container {
+    display: flex;
+    gap: 20px;
+    background-color: #EAFAE7;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.summary-item {
+    font-weight: bold;
 }
