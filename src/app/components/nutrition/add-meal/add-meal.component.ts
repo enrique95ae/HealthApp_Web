@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FoodsService } from '../../../services/foods/foods.service';
-
-import { Food } from '../../../models/meal.model';
-import { ErrorPopupComponent } from '../../general/error/error-popup/error-popup.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { FoodsService } from '../../../services/foods/foods.service';
+import { Food } from '../../../models/meal.model';
+import { ErrorPopupComponent } from '../../general/error/error-popup/error-popup.component';
 
 @Component({
   selector: 'app-add-meal',
@@ -12,11 +12,7 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./add-meal.component.css']
 })
 export class AddMealComponent implements OnInit {
-  mealTitle: string = '';
-  mealTimeHour: number | null = null;
-  mealTimeMinute: number | null = null;
-  mealTimePeriod: string = 'AM';
-  mealRating: number = 5;
+  mealForm: FormGroup;
   foods: Food[] = [];
   isFoodValid: boolean = false;
   totalCalories: number = 0;
@@ -26,11 +22,18 @@ export class AddMealComponent implements OnInit {
 
   @ViewChild(ErrorPopupComponent) errorPopup!: ErrorPopupComponent;
 
-
-  constructor(private foodsService: FoodsService,  private router: Router) {}
+  constructor(private foodsService: FoodsService, private router: Router) {
+    this.mealForm = new FormGroup({
+      mealTitle: new FormControl('', Validators.required),
+      mealTimeHour: new FormControl('', [Validators.required, Validators.min(1), Validators.max(12)]),
+      mealTimeMinute: new FormControl('', [Validators.required, Validators.min(0), Validators.max(59)]),
+      mealTimePeriod: new FormControl('AM', Validators.required),
+      mealRating: new FormControl(5, Validators.required)
+    });
+  }
 
   ngOnInit(): void {
-    this.initializeFoodComponent();
+    this.initializeFoodComponent(); // Ensure one empty food component on load
     console.log('Initial empty food component added:', this.foods);
   }
 
@@ -39,10 +42,10 @@ export class AddMealComponent implements OnInit {
     console.log('Food validity changed:', isValid);
   }
 
-  onPortionEatenChange(portion: number, index: number): void {
+  onPortionEatenChange(portionEaten: number, index: number): void {
     if (this.foods[index]) {
-      this.foods[index].PortionEaten = portion;
-      console.log('Portion eaten changed:', portion, 'for food at index:', index);
+      this.foods[index].PortionEaten = portionEaten;
+      console.log('Portion eaten changed:', portionEaten, 'for food at index:', index);
       this.updateMealSummary();
     }
   }
@@ -51,7 +54,7 @@ export class AddMealComponent implements OnInit {
     if (this.foods[index]) {
       this.foods[index] = food;
       console.log('Food name changed:', food, 'at index:', index);
-      this.foods = [...this.foods];
+      this.foods = [...this.foods]; // Create a new array reference
       this.updateMealSummary();
     }
   }
@@ -74,6 +77,10 @@ export class AddMealComponent implements OnInit {
     return latestFood && latestFood.Name.trim() !== '' && latestFood.PortionEaten > 0;
   }
 
+  isFormValid(): boolean {
+    return this.mealForm.valid && this.foods.length > 0 && this.isLatestFoodValid();
+  }
+
   updateMealSummary(): void {
     console.log('Updating meal summary with foods:', this.foods);
     this.totalCalories = this.foods.reduce((acc, food) => acc + (food.Calories * (food.PortionEaten / 100)), 0);
@@ -89,27 +96,32 @@ export class AddMealComponent implements OnInit {
   }
 
   finishMeal(): void {
-    const userJson = localStorage.getItem('user');
-    if (!userJson) {
-      console.error('User data not found in local storage');
+    if (!this.isFormValid()) {
+      this.showErrorPopup('Please fill in all required fields.');
       return;
     }
-    
+
+    const userJson = localStorage.getItem('user');
+    if (!userJson) {
+      this.showErrorPopup('User data not found in local storage');
+      return;
+    }
+
     const user = JSON.parse(userJson);
     const userId = user.Id;
     if (!userId) {
-      console.error('User ID not found in user data');
+      this.showErrorPopup('User ID not found in user data');
       return;
     }
 
     const mealData = {
       USER_Id: userId, 
-      Title: this.mealTitle,
-      Score: this.mealRating,
-      CreationTime: this.mealTimeHour + ':' + this.mealTimeMinute + this.mealTimePeriod
+      Title: this.mealForm.get('mealTitle')?.value,
+      Score: this.mealForm.get('mealRating')?.value,
+      CreationTime: this.mealForm.get('mealTimeHour')?.value + ':' + this.mealForm.get('mealTimeMinute')?.value + this.mealForm.get('mealTimePeriod')?.value
     };
 
-     this.foodsService.createMeal(mealData).subscribe(
+    this.foodsService.createMeal(mealData).subscribe(
       response => {
         console.log('Meal created successfully with ID:', response.Id);
         const mealId = response.Id;

@@ -7,25 +7,18 @@
     border-radius: 25px;
     width: 100%;
     min-width: 60%;
-    /* Ensure at least 60% of the screen width */
     max-width: 800px;
-    /* Optional: Set a maximum width to keep it from getting too wide */
     margin: 25px auto;
-    /* Center the component */
 }
 
 .form-row {
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap;
-    /* Allow wrapping if necessary */
 }
 
 label {
     font-weight: bold;
-    white-space: nowrap;
-    /* Prevent label from breaking into multiple lines */
 }
 
 input,
@@ -33,10 +26,7 @@ select {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    flex: 1;
-    /* Ensure the inputs take the available width */
-    min-width: 100px;
-    /* Minimum width for better layout */
+    width: 100%;
 }
 
 button {
@@ -56,11 +46,8 @@ button:hover {
 
 button:disabled {
     background-color: #cccccc;
-    /* Grey out the button */
     color: #666666;
-    /* Change text color to a lighter grey */
     cursor: not-allowed;
-    /* Show not-allowed cursor */
 }
 
 .sr-only {

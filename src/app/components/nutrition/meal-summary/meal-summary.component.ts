@@ -9,6 +9,7 @@ import { Food } from '../../../models/meal.model';
 export class MealSummaryComponent implements OnChanges {
   @Input() foods: Food[] = [];
   @Input() finishMeal!: () => void;
+  @Input() isFormValid!: boolean; // New input property to receive form validity
 
   totalCalories: number = 0;
   totalProteins: number = 0;

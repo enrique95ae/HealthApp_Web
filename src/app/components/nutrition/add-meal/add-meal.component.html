@@ -1,49 +1,51 @@
 <div class="center-container">
   <div class="add-meal-container">
-    <div class="form-row">
-      <label for="mealTitle">Title:</label>
-      <input id="mealTitle" type="text" [(ngModel)]="mealTitle" />
-    </div>
+    <form [formGroup]="mealForm">
+      <div class="form-row">
+        <label for="mealTitle">Title:</label>
+        <input id="mealTitle" type="text" formControlName="mealTitle" />
+      </div>
 
-    <div class="form-row">
-      <label for="mealTimeHour">Time:</label>
-      <input
-        id="mealTimeHour"
-        type="number"
-        min="1"
-        max="12"
-        [(ngModel)]="mealTimeHour"
-        placeholder="HH"
-      />
-      <span>:</span>
-      <input
-        id="mealTimeMinute"
-        type="number"
-        min="0"
-        max="59"
-        [(ngModel)]="mealTimeMinute"
-        placeholder="MM"
-      />
-      <label for="mealTimePeriod" class="sr-only">Period:</label>
-      <select id="mealTimePeriod" [(ngModel)]="mealTimePeriod">
-        <option value="AM">AM</option>
-        <option value="PM">PM</option>
-      </select>
-    </div>
+      <div class="form-row">
+        <label for="mealTimeHour">Time:</label>
+        <input
+          id="mealTimeHour"
+          type="number"
+          min="1"
+          max="12"
+          formControlName="mealTimeHour"
+          placeholder="HH"
+        />
+        <span>:</span>
+        <input
+          id="mealTimeMinute"
+          type="number"
+          min="0"
+          max="59"
+          formControlName="mealTimeMinute"
+          placeholder="MM"
+        />
+        <label for="mealTimePeriod" class="sr-only">Period:</label>
+        <select id="mealTimePeriod" formControlName="mealTimePeriod">
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+      </div>
 
-    <div class="form-row">
-      <label for="mealRating"
-        >Rate how good this meal is towards your goal:</label
-      >
-      <select id="mealRating" [(ngModel)]="mealRating">
-        <option
-          *ngFor="let rating of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-          [value]="rating"
+      <div class="form-row">
+        <label for="mealRating"
+          >Rate how good this meal is towards your goal:</label
         >
-          {{ rating }}
-        </option>
-      </select>
-    </div>
+        <select id="mealRating" formControlName="mealRating">
+          <option
+            *ngFor="let rating of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+            [value]="rating"
+          >
+            {{ rating }}
+          </option>
+        </select>
+      </div>
+    </form>
 
     <div class="form-row">
       <label>Ingredients:</label>
@@ -51,9 +53,11 @@
     <div *ngFor="let food of foods; let i = index" class="form-row">
       <app-add-food
         [food]="food"
+        class="add-food"
         (validFood)="onFoodValidityChange($event)"
         (foodChange)="onFoodNameChange($event, i)"
-      ></app-add-food>
+      >
+      </app-add-food>
     </div>
 
     <button (click)="addFoodComponent()" [disabled]="!isLatestFoodValid()">
@@ -63,7 +67,9 @@
     <app-meal-summary
       [foods]="foods"
       [finishMeal]="finishMeal.bind(this)"
-    ></app-meal-summary>
+      [isFormValid]="isFormValid()"
+    >
+    </app-meal-summary>
   </div>
   <app-error-popup></app-error-popup>
 </div>
