@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FoodsService } from '../../../services/foods/foods.service';
+
 import { Food } from '../../../models/meal.model';
+import { ErrorPopupComponent } from '../../general/error/error-popup/error-popup.component';
+import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-add-meal',
@@ -12,6 +16,7 @@ export class AddMealComponent implements OnInit {
   mealTimeHour: number | null = null;
   mealTimeMinute: number | null = null;
   mealTimePeriod: string = 'AM';
+  mealRating: number = 5;
   foods: Food[] = [];
   isFoodValid: boolean = false;
   totalCalories: number = 0;
@@ -19,10 +24,13 @@ export class AddMealComponent implements OnInit {
   totalCarbs: number = 0;
   totalFats: number = 0;
 
-  constructor(private foodsService: FoodsService) {}
+  @ViewChild(ErrorPopupComponent) errorPopup!: ErrorPopupComponent;
+
+
+  constructor(private foodsService: FoodsService,  private router: Router) {}
 
   ngOnInit(): void {
-    this.initializeFoodComponent(); // Ensure one empty food component on load
+    this.initializeFoodComponent();
     console.log('Initial empty food component added:', this.foods);
   }
 
@@ -43,7 +51,7 @@ export class AddMealComponent implements OnInit {
     if (this.foods[index]) {
       this.foods[index] = food;
       console.log('Food name changed:', food, 'at index:', index);
-      this.foods = [...this.foods]; // Create a new array reference
+      this.foods = [...this.foods];
       this.updateMealSummary();
     }
   }
@@ -97,34 +105,41 @@ export class AddMealComponent implements OnInit {
     const mealData = {
       USER_Id: userId, 
       Title: this.mealTitle,
-      Score: 10 // Example score, you might want to calculate this based on some criteria
+      Score: this.mealRating,
+      CreationTime: this.mealTimeHour + ':' + this.mealTimeMinute + this.mealTimePeriod
     };
 
-    this.foodsService.createMeal(mealData).subscribe(
+     this.foodsService.createMeal(mealData).subscribe(
       response => {
         console.log('Meal created successfully with ID:', response.Id);
         const mealId = response.Id;
 
-        this.foods.forEach(food => {
+        const addFoodRequests = this.foods.map(food => {
           const mealFoodData = {
             USR_MEAL_ID: mealId,
             FOODS_ID: food.Id,
             portionEaten: food.PortionEaten
           };
+          return this.foodsService.addFoodToMeal(mealFoodData);
+        });
 
-          this.foodsService.addFoodToMeal(mealFoodData).subscribe(
-            () => {
-              console.log(`Food with ID ${food.Id} added to meal successfully`);
-            },
-            error => {
-              console.error('Error adding food to meal:', error);
-            }
-          );
+        forkJoin(addFoodRequests).subscribe({
+          next: () => {
+            console.log('All foods added to meal successfully');
+            this.router.navigate(['/']);
+          },
+          error: (error) => {
+            this.showErrorPopup(`Something went wrong and error code ${error.status}`);
+          }
         });
       },
       error => {
-        console.error('Error creating meal:', error);
+        this.showErrorPopup(`Something went wrong and error code ${error.status}`);
       }
     );
+  }
+
+  showErrorPopup(message: string): void {
+    this.errorPopup.message = message;
   }
 }

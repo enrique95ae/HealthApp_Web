@@ -10,3 +10,14 @@
 .summary-item {
     font-weight: bold;
 }
+
+.finish-meal-button {
+    background-color: #268040;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 50%;
+    margin: auto;
+}

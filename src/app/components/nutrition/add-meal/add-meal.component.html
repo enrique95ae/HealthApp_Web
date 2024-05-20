@@ -32,6 +32,20 @@
     </div>
 
     <div class="form-row">
+      <label for="mealRating"
+        >Rate how good this meal is towards your goal:</label
+      >
+      <select id="mealRating" [(ngModel)]="mealRating">
+        <option
+          *ngFor="let rating of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+          [value]="rating"
+        >
+          {{ rating }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-row">
       <label>Ingredients:</label>
     </div>
     <div *ngFor="let food of foods; let i = index" class="form-row">
@@ -51,4 +65,5 @@
       [finishMeal]="finishMeal.bind(this)"
     ></app-meal-summary>
   </div>
+  <app-error-popup></app-error-popup>
 </div>

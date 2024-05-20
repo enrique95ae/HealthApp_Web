@@ -18,10 +18,14 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
+    /* Allow wrapping if necessary */
 }
 
 label {
     font-weight: bold;
+    white-space: nowrap;
+    /* Prevent label from breaking into multiple lines */
 }
 
 input,
@@ -29,8 +33,10 @@ select {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 100%;
-    /* Ensure the inputs take full width */
+    flex: 1;
+    /* Ensure the inputs take the available width */
+    min-width: 100px;
+    /* Minimum width for better layout */
 }
 
 button {
