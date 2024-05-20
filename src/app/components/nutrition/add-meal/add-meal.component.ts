@@ -79,4 +79,52 @@ export class AddMealComponent implements OnInit {
       totalFats: this.totalFats
     });
   }
+
+  finishMeal(): void {
+    const userJson = localStorage.getItem('user');
+    if (!userJson) {
+      console.error('User data not found in local storage');
+      return;
+    }
+    
+    const user = JSON.parse(userJson);
+    const userId = user.Id;
+    if (!userId) {
+      console.error('User ID not found in user data');
+      return;
+    }
+
+    const mealData = {
+      USER_Id: userId, 
+      Title: this.mealTitle,
+      Score: 10 // Example score, you might want to calculate this based on some criteria
+    };
+
+    this.foodsService.createMeal(mealData).subscribe(
+      response => {
+        console.log('Meal created successfully with ID:', response.Id);
+        const mealId = response.Id;
+
+        this.foods.forEach(food => {
+          const mealFoodData = {
+            USR_MEAL_ID: mealId,
+            FOODS_ID: food.Id,
+            portionEaten: food.PortionEaten
+          };
+
+          this.foodsService.addFoodToMeal(mealFoodData).subscribe(
+            () => {
+              console.log(`Food with ID ${food.Id} added to meal successfully`);
+            },
+            error => {
+              console.error('Error adding food to meal:', error);
+            }
+          );
+        });
+      },
+      error => {
+        console.error('Error creating meal:', error);
+      }
+    );
+  }
 }

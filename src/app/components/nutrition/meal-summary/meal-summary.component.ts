@@ -8,6 +8,7 @@ import { Food } from '../../../models/meal.model';
 })
 export class MealSummaryComponent implements OnChanges {
   @Input() foods: Food[] = [];
+  @Input() finishMeal!: () => void;
 
   totalCalories: number = 0;
   totalProteins: number = 0;
