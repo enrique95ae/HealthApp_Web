@@ -1,0 +1,194 @@
+<div class="create-food-container">
+  <h2>Add a Food to the database</h2>
+  <h4>And use it in your meals!</h4>
+
+  <app-search-food-online
+    (foodSelected)="populateFoodFields($event)"
+  ></app-search-food-online>
+
+  <form (ngSubmit)="onSubmit()" #createFoodForm="ngForm">
+    <div class="form-row">
+      <div class="form-group form-group-half">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="food.Name"
+          required
+          #name="ngModel"
+        />
+        <div *ngIf="createFoodForm.submitted && name.invalid" class="error">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="portionSize">Portion Size (g)</label>
+        <input
+          type="number"
+          id="portionSize"
+          name="portionSize"
+          [(ngModel)]="food.PortionSize"
+          required
+          #portionSize="ngModel"
+        />
+        <div
+          *ngIf="createFoodForm.submitted && portionSize.invalid"
+          class="error"
+        >
+          Portion Size is required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="calories">Calories</label>
+        <input
+          type="number"
+          id="calories"
+          name="calories"
+          [(ngModel)]="food.Calories"
+          required
+          #calories="ngModel"
+        />
+        <div *ngIf="createFoodForm.submitted && calories.invalid" class="error">
+          Calories are required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="totalFat">Total Fat (g)</label>
+        <input
+          type="number"
+          id="totalFat"
+          name="totalFat"
+          [(ngModel)]="food.TotalFat"
+          required
+          #totalFat="ngModel"
+        />
+        <div *ngIf="createFoodForm.submitted && totalFat.invalid" class="error">
+          Total Fat is required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="saturatedFat">Saturated Fat (g)</label>
+        <input
+          type="number"
+          id="saturatedFat"
+          name="saturatedFat"
+          [(ngModel)]="food.SaturatedFat"
+          required
+          #saturatedFat="ngModel"
+        />
+        <div
+          *ngIf="createFoodForm.submitted && saturatedFat.invalid"
+          class="error"
+        >
+          Saturated Fat is required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="sodium">Sodium (mg)</label>
+        <input
+          type="number"
+          id="sodium"
+          name="sodium"
+          [(ngModel)]="food.Sodium"
+          required
+          #sodium="ngModel"
+        />
+        <div *ngIf="createFoodForm.submitted && sodium.invalid" class="error">
+          Sodium is required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="totalCarbs">Total Carbs (g)</label>
+        <input
+          type="number"
+          id="totalCarbs"
+          name="totalCarbs"
+          [(ngModel)]="food.TotalCarbs"
+          required
+          #totalCarbs="ngModel"
+        />
+        <div
+          *ngIf="createFoodForm.submitted && totalCarbs.invalid"
+          class="error"
+        >
+          Total Carbs are required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="dietaryFiber">Dietary Fiber (g)</label>
+        <input
+          type="number"
+          id="dietaryFiber"
+          name="dietaryFiber"
+          [(ngModel)]="food.DietaryFiber"
+          required
+          #dietaryFiber="ngModel"
+        />
+        <div
+          *ngIf="createFoodForm.submitted && dietaryFiber.invalid"
+          class="error"
+        >
+          Dietary Fiber is required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="sugars">Sugars (g)</label>
+        <input
+          type="number"
+          id="sugars"
+          name="sugars"
+          [(ngModel)]="food.Sugars"
+          required
+          #sugars="ngModel"
+        />
+        <div *ngIf="createFoodForm.submitted && sugars.invalid" class="error">
+          Sugars are required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="proteins">Proteins (g)</label>
+        <input
+          type="number"
+          id="proteins"
+          name="proteins"
+          [(ngModel)]="food.Proteins"
+          required
+          #proteins="ngModel"
+        />
+        <div *ngIf="createFoodForm.submitted && proteins.invalid" class="error">
+          Proteins are required
+        </div>
+      </div>
+
+      <div class="form-group form-group-half">
+        <label for="cholesterol">Cholesterol (mg)</label>
+        <input
+          type="number"
+          id="cholesterol"
+          name="cholesterol"
+          [(ngModel)]="food.Cholesterol"
+          required
+          #cholesterol="ngModel"
+        />
+        <div
+          *ngIf="createFoodForm.submitted && cholesterol.invalid"
+          class="error"
+        >
+          Cholesterol is required
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">Create Food</button>
+  </form>
+</div>

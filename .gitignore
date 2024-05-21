@@ -40,3 +40,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Add the env.ts file to gitignore (API key file)
+env.ts

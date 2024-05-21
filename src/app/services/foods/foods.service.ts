@@ -19,6 +19,11 @@ export class FoodsService {
     return this.http.get<Food>(`${this.baseUrl}/foods/${id}`);
   }
 
+  createFood(foodData: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.baseUrl}/foods/`, foodData, { headers });
+  }
+
   createMeal(mealData: any): Observable<{ Id: number }> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<{ Id: number }>(`${this.baseUrl}/meals/usr_meals`, mealData, { headers });
