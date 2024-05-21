@@ -9,7 +9,9 @@
     margin-top: 0;
     /* Remove any extra margin */
     height: 100%;
-    /* Ensure it takes full height of the container */ 
+    /* Ensure it takes full height of the container */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
 }
 
 .meals-title {

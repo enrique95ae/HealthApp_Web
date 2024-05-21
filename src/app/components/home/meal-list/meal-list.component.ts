@@ -32,15 +32,33 @@ export class MealListComponent implements OnInit {
     this.mealsService.getMealsToday(userId).subscribe({
       next: (meals) => {
         console.log('Meals data fetched from API:', meals);
-        this.meals = meals.map(meal => ({
-          ...meal,
-          totalCalories: Math.round(meal.Foods.reduce((sum, food) => sum + (food.Calories * (food.PortionEaten / food.PortionSize)), 0))
-        }));
+        this.meals = meals
+          .sort((a, b) => this.compareTimes(a.CreationTime, b.CreationTime))
+          .map(meal => ({
+            ...meal,
+            totalCalories: Math.round(meal.Foods.reduce((sum, food) => sum + (food.Calories * (food.PortionEaten / food.PortionSize)), 0))
+          }));
         console.log('Meals data assigned to component:', this.meals);
       },
       error: (error) => {
         console.error('Failed to fetch meals:', error);
       }
     });
+  }
+
+  compareTimes(timeA: string, timeB: string): number {
+    const parseTime = (time: string) => {
+      const [hoursMinutes, period] = time.split(' ');
+      let [hours, minutes] = hoursMinutes.split(':').map(Number);
+      if (period === 'PM' && hours < 12) {
+        hours += 12;
+      }
+      if (period === 'AM' && hours === 12) {
+        hours = 0;
+      }
+      return hours * 60 + minutes;
+    };
+
+    return parseTime(timeA) - parseTime(timeB);
   }
 }
