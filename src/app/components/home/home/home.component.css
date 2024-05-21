@@ -1,13 +1,10 @@
 .home-container {
     display: flex;
     height: 100vh;
-    /* Full viewport height */
     overflow: hidden;
-    /* Prevent scrolling */
     padding: 10px;
-    /* Optional: padding around the container */
     box-sizing: border-box;
-    /* Ensure padding is included in the height calculation */
+    flex-wrap: wrap;
 }
 
 .column {
@@ -18,50 +15,53 @@
 
 .column-1 {
     flex: 0 0 40%;
-    /* 40% width */
     display: flex;
     flex-direction: column;
-    gap: 0px;
-    /* Space between app-user and app-meal-list */
-    overflow: hidden;
-    /* Prevent scrolling */
+    gap: 10px;
+    overflow-y: auto;
 }
 
 .column-2 {
     flex: 0 0 60%;
-    /* 60% width */
     display: flex;
     flex-direction: column;
-    gap: 0px;
-    /* Space between app-summary and app-progression */
-    overflow: hidden;
-    /* Prevent scrolling */
+    gap: 10px;
+    overflow-y: auto;
+    height: calc(100vh - 20px);
 }
 
-app-user {
-    overflow: hidden;
-    /* Prevent internal scrolling */
-    margin: 20px;
-    /* Remove margin between components */
+app-user,
+app-meal-list,
+app-summary,
+app-progression {
+    margin: 10px;
+    overflow: visible;
+    max-height: 500px;
 }
 
-app-meal-list {
-    overflow: hidden;
-    /* Prevent internal scrolling */
-    margin: 20px;
-    /* Remove margin between components */
-}
+@media (max-width: 768px) {
+    .home-container {
+        flex-direction: column;
+        height: auto;
+    }
 
-app-summary {
-    overflow: hidden;
-    /* Prevent internal scrolling */
-    margin: 20px;
-    /* Remove margin between components */
+    .column-1,
+    .column-2 {
+        flex: 1 0 auto;
+        width: 100%;
+        overflow: visible;
+    }
+
+    app-user,
+    app-meal-list,
+    app-summary,
+    app-progression {
+        max-height: none;
+    }
 }
 
 app-progression {
-    overflow: hidden;
-    /* Prevent internal scrolling */
-    margin: 20px;
-    /* Remove margin between components */
+    flex-grow: 1;
+    height: calc(50vh - 40px);
+    overflow-y: auto;
 }
