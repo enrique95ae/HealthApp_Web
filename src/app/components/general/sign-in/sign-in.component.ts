@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from '../../../services/users/users.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../models/user.model';  // Adjust the path as needed
@@ -10,16 +11,24 @@ import { User } from '../../../models/user.model';  // Adjust the path as needed
 })
 export class SignInComponent {
   isPopupVisible = true;
+  showCreateAccount = false;
   username = '';
   password = '';
   errorMessage = '';
 
-  constructor(private usersService: UsersService, private authService: AuthService) {}
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+    private router: Router // Inject the Router service
+  ) {}
 
   ngOnInit(): void {
     this.authService.loggedIn$.subscribe(loggedIn => {
       console.log('Login state changed: ', loggedIn);  // Debugging statement
       this.isPopupVisible = !loggedIn;
+      if (loggedIn) {
+        this.router.navigate(['/']); // Navigate to the home page
+      }
     });
   }
 
@@ -40,6 +49,10 @@ export class SignInComponent {
   }
 
   createAccount(): void {
-    alert('Account creation is not implemented yet.');
+    this.showCreateAccount = true;
+  }
+
+  closeCreateAccount(): void {
+    this.showCreateAccount = false;
   }
 }

@@ -22,13 +22,17 @@ import { UserComponent } from './components/home/user/user.component';
 import { AddMealComponent } from './components/nutrition/add-meal/add-meal.component';
 import { MealSummaryComponent } from './components/nutrition/meal-summary/meal-summary.component';
 import { AddFoodComponent } from './components/nutrition/add-food/add-food.component';
+import { ErrorPopupComponent } from './components/general/error/error-popup/error-popup.component';
+import { CreateAccountComponent } from './components/general/createAccount/create-account/create-account.component';
+
+import { routes } from './app.routes';
 
 
 import { AuthService } from './services/auth/auth.service';
 import { UsersService } from './services/users/users.service';
 import { MealsService } from './services/meals/meals.service';
 import { FoodsService } from './services/foods/foods.service';
-import { ErrorPopupComponent } from './components/general/error/error-popup/error-popup.component';
+
 
 
 const appRoutes: Routes = [
@@ -38,7 +42,8 @@ const appRoutes: Routes = [
   { path: 'more', component: MoreComponent },
   { path: 'add-meal', component: AddMealComponent }, 
   { path: 'create-food', component: HomeComponent },
-  { path: 'history', component: HomeComponent }, 
+  { path: 'history', component: HomeComponent },
+  { path: 'create-account', component: CreateAccountComponent},
 ];
 
 @NgModule({
@@ -59,7 +64,8 @@ const appRoutes: Routes = [
     MealSummaryComponent,
     AddMealComponent,
     AddFoodComponent,
-    ErrorPopupComponent
+    ErrorPopupComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

@@ -27,4 +27,9 @@
     </form>
     <button (click)="createAccount()">Create Account</button>
   </div>
+
+  <!-- Create Account Popup -->
+  <div *ngIf="showCreateAccount" class="create-account-popup">
+    <app-create-account (close)="closeCreateAccount()"></app-create-account>
+  </div>
 </div>

@@ -1,0 +1,135 @@
+<div class="create-account-container">
+  <h2>Create Account</h2>
+  <form (ngSubmit)="onSubmit()" #createAccountForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="user.Name"
+        required
+      />
+      <div *ngIf="submitted && !user.Name" class="error">Name is required</div>
+    </div>
+
+    <div class="form-group">
+      <label for="dob">Date of Birth</label>
+      <input
+        type="date"
+        id="dob"
+        name="dob"
+        [(ngModel)]="user.DoB"
+        required
+        (change)="validateDob()"
+      />
+      <div *ngIf="submitted && !isValidDob" class="error">
+        Date of Birth cannot be in the future
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="weight">Weight (kg)</label>
+      <input
+        type="number"
+        id="weight"
+        name="weight"
+        [(ngModel)]="user.Weight"
+        required
+      />
+      <div *ngIf="submitted && !user.Weight" class="error">
+        Weight is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="height">Height (cm)</label>
+      <input
+        type="number"
+        id="height"
+        name="height"
+        [(ngModel)]="user.Height"
+        required
+      />
+      <div *ngIf="submitted && !user.Height" class="error">
+        Height is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="bodyType">Body Type</label>
+      <select
+        id="bodyType"
+        name="bodyType"
+        [(ngModel)]="user.BodyType"
+        required
+      >
+        <option value="">Select Body Type</option>
+        <option value="Endomorph">Endomorph</option>
+        <option value="Ectomorph">Ectomorph</option>
+        <option value="Mesomorph">Mesomorph</option>
+      </select>
+      <div *ngIf="submitted && !user.BodyType" class="error">
+        Body Type is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="goal">Goal</label>
+      <select id="goal" name="goal" [(ngModel)]="user.Goal" required>
+        <option value="">Select Goal</option>
+        <option value="Lose weight">Lose weight</option>
+        <option value="Gain muscle">Gain muscle</option>
+        <option value="Stay fit">Stay fit</option>
+      </select>
+      <div *ngIf="submitted && !user.Goal" class="error">Goal is required</div>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="user.Username"
+        required
+      />
+      <div *ngIf="submitted && !user.Username" class="error">
+        Username is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="user.Password"
+        required
+        (change)="validatePassword()"
+      />
+      <div *ngIf="submitted && !isValidPassword" class="error">
+        Password must be at least 8 characters long, contain at least one
+        number, one uppercase letter, and one special character
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        required
+        (change)="validatePassword()"
+      />
+      <div *ngIf="submitted && !passwordsMatch" class="error">
+        Passwords must match
+      </div>
+    </div>
+
+    <button type="submit">Create Account</button>
+  </form>
+</div>
