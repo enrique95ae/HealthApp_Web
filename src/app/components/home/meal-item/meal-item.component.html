@@ -8,7 +8,9 @@
     <div class="title-row">{{ meal.Title }}</div>
     <div class="calories-row">{{ calculateTotalCalories() }} Calories</div>
     <div class="details-button-row">
-      <button class="details-button">See Details</button>
+      <button class="details-button" (click)="navigateToDetails()">
+        See Details
+      </button>
     </div>
   </div>
   <div class="grade-column">{{ meal.Score }}/10</div>

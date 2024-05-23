@@ -1,0 +1,15 @@
+<div *ngIf="meal" class="meal-details-container">
+  <h2>{{ meal.Title }}</h2>
+  <div class="meal-info">
+    <p><strong>Date:</strong> {{ meal.CreationDate }}</p>
+    <p><strong>Time:</strong> {{ meal.CreationTime }}</p>
+    <p><strong>Score:</strong> {{ meal.Score }}/10</p>
+  </div>
+  <h3>Ingredients:</h3>
+  <div class="foods-container">
+    <app-food-card
+      *ngFor="let food of meal.Foods"
+      [food]="food"
+    ></app-food-card>
+  </div>
+</div>

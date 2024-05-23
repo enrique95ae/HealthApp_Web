@@ -14,4 +14,8 @@ export class MealsService {
   getMealsToday(userId: number): Observable<Meal[]> {
     return this.http.get<Meal[]>(`${this.baseUrl}/meals/meals_today/${userId}`);
   }
+
+    getMealDetails(mealId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/meals/meals/${mealId}`);
+  }
 }

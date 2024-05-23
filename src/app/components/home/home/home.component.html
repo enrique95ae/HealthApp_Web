@@ -5,9 +5,25 @@
   </div>
   <div class="column column-2">
     <app-summary></app-summary>
-    <app-progression
-      [data]="progressionData"
-      title="Progression Over Time"
-    ></app-progression>
+    <div class="progression-wrapper">
+      <div class="progression-header">
+        <h3 class="progression-title">{{ title }}</h3>
+        <div *ngIf="showWeightInput" class="weight-input-wrapper">
+          <input
+            type="number"
+            step="0.01"
+            placeholder="Today's weight"
+            [(ngModel)]="todayWeight"
+          />
+          <button (click)="submitWeight()" [disabled]="!todayWeight">
+            Submit
+          </button>
+        </div>
+      </div>
+      <app-progression
+        [data]="progressionData"
+        [title]="title"
+      ></app-progression>
+    </div>
   </div>
 </div>

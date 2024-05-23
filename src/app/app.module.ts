@@ -26,6 +26,7 @@ import { ErrorPopupComponent } from './components/general/error/error-popup/erro
 import { CreateAccountComponent } from './components/general/createAccount/create-account/create-account.component';
 import { CreateFoodComponent } from './components/nutrition/create-food/create-food.component';
 import { SearchFoodOnlineComponent } from './components/nutrition/search-food-online/search-food-online.component';
+import { FoodCardComponent } from './components/nutrition/food-card/food-card.component';
 
 
 import { routes } from './app.routes';
@@ -35,7 +36,7 @@ import { AuthService } from './services/auth/auth.service';
 import { UsersService } from './services/users/users.service';
 import { MealsService } from './services/meals/meals.service';
 import { FoodsService } from './services/foods/foods.service';
-
+import { MealDetailsComponent } from './components/nutrition/meal-details/meal-details.component';
 
 
 const appRoutes: Routes = [
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
   { path: 'history', component: HomeComponent },
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'create-food', component: CreateFoodComponent},
-  { path: 'search-food-online', component: SearchFoodOnlineComponent}
+  { path: 'search-food-online', component: SearchFoodOnlineComponent},
+  { path: 'meal-details/:id', component: MealDetailsComponent}
 ];
 
 @NgModule({
@@ -71,7 +73,9 @@ const appRoutes: Routes = [
     ErrorPopupComponent,
     CreateAccountComponent,
     CreateFoodComponent,
-    SearchFoodOnlineComponent
+    SearchFoodOnlineComponent,
+    MealDetailsComponent,
+    FoodCardComponent
   ],
   imports: [
     BrowserModule,
