@@ -9,14 +9,12 @@ import { environment } from '../../../env/env';
 })
 export class HomeComponent implements OnInit {
   progressionData: { label: string, data: number[] }[] = [];
-  title = 'Progression Over Time';
+  title = 'Bodyweight over time';
   showWeightInput = false;
-  userId: number = 1; // Default user ID (change as needed)
-  todayWeight = '';
-  weightEntered = false;
+  userId: number = 1;
   private baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -32,8 +30,7 @@ export class HomeComponent implements OnInit {
     this.http.get<any>(`${this.baseUrl}/users/weights/today/${this.userId}`).subscribe({
       next: (response) => {
         if (response && typeof response.weight_entered !== 'undefined') {
-          this.weightEntered = response.weight_entered;
-          this.showWeightInput = !this.weightEntered;
+                   this.showWeightInput = !response.weight_entered;
         }
       },
       error: (error) => {
@@ -46,13 +43,13 @@ export class HomeComponent implements OnInit {
     this.http.get<{ EntryDate: string, Weight: number }[]>(`${this.baseUrl}/users/weights/${this.userId}`).subscribe({
       next: (response) => {
         if (response && Array.isArray(response)) {
-          const sortedResponse = response.sort((a, b) => new Date(b.EntryDate).getTime() - new Date(a.EntryDate).getTime());
+          const sortedResponse = response.sort((a, b) => new Date(a.EntryDate).getTime() - new Date(b.EntryDate).getTime());
           const data = sortedResponse.map(entry => ({ label: entry.EntryDate, data: [entry.Weight] }));
           this.progressionData = data;
 
           // Update user data with the most recent weight
           if (sortedResponse.length > 0) {
-            const mostRecentWeight = sortedResponse[0].Weight;
+            const mostRecentWeight = sortedResponse[sortedResponse.length - 1].Weight;
             const user = JSON.parse(localStorage.getItem('user') || '{}');
             if (user) {
               user.Weight = mostRecentWeight;
@@ -68,19 +65,5 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
-  submitWeight(): void {
-    if (this.todayWeight) {
-      const weight = parseFloat(this.todayWeight);
-      this.http.post(`${this.baseUrl}/users/weights/today/${this.userId}`, { weight }).subscribe({
-        next: () => {
-          this.checkTodayWeight();
-          this.fetchProgressionData();
-        },
-        error: (error) => {
-          console.error('Failed to submit today\'s weight:', error);
-        }
-      });
-    }
-  }
 }
+

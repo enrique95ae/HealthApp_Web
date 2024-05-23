@@ -1,6 +1,6 @@
 .progression-container {
     width: 100%;
-    background-color: #F4FDF2;
+    background-color: #f4fdf2;
     border-radius: 25px;
     padding: 20px;
     display: flex;
@@ -13,8 +13,38 @@
     overflow-y: auto;
 }
 
-.progression-title {
+.progression-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+.weight-input-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="number"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #268040;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
 canvas {
