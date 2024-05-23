@@ -46,8 +46,19 @@ export class HomeComponent implements OnInit {
     this.http.get<{ EntryDate: string, Weight: number }[]>(`${this.baseUrl}/users/weights/${this.userId}`).subscribe({
       next: (response) => {
         if (response && Array.isArray(response)) {
-          const data = response.map(entry => ({ label: entry.EntryDate, data: [entry.Weight] }));
+          const sortedResponse = response.sort((a, b) => new Date(b.EntryDate).getTime() - new Date(a.EntryDate).getTime());
+          const data = sortedResponse.map(entry => ({ label: entry.EntryDate, data: [entry.Weight] }));
           this.progressionData = data;
+
+          // Update user data with the most recent weight
+          if (sortedResponse.length > 0) {
+            const mostRecentWeight = sortedResponse[0].Weight;
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            if (user) {
+              user.Weight = mostRecentWeight;
+              localStorage.setItem('user', JSON.stringify(user));
+            }
+          }
         } else {
           console.error('Unexpected response format:', response);
         }
