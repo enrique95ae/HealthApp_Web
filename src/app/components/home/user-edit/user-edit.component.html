@@ -1,0 +1,42 @@
+<div class="user-edit-popup">
+  <h2>Edit User Details</h2>
+  <div class="user-edit-form">
+    <label>
+      Name:
+      <input [(ngModel)]="data.Name" />
+    </label>
+    <label>
+      Date of Birth:
+      <input type="date" [(ngModel)]="data.DoB" />
+    </label>
+    <label>
+      Weight:
+      <input type="number" [(ngModel)]="data.Weight" />
+    </label>
+    <label>
+      Height:
+      <input type="number" [(ngModel)]="data.Height" />
+    </label>
+    <label>
+      Goal:
+      <select [(ngModel)]="data.Goal">
+        <option value="">Select Goal</option>
+        <option value="Lose weight">Lose weight</option>
+        <option value="Gain muscle">Gain muscle</option>
+        <option value="Stay fit">Stay fit</option>
+      </select>
+    </label>
+    <label>
+      Body Type:
+      <select [(ngModel)]="data.BodyType">
+        <option value="Ectomorph">Ectomorph</option>
+        <option value="Mesomorph">Mesomorph</option>
+        <option value="Endomorph">Endomorph</option>
+      </select>
+    </label>
+  </div>
+  <div class="dialog-actions">
+    <button (click)="onCancel()" class="cancel-button">Cancel</button>
+    <button (click)="onSave()" class="save-button">Save</button>
+  </div>
+</div>

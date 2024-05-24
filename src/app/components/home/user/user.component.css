@@ -60,3 +60,23 @@
 .user-data {
     color: #2f594f;
 }
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-button {
+    background-color: #268040;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.edit-button:hover {
+    background-color: #124035;
+}

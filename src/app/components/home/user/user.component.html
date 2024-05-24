@@ -4,6 +4,12 @@
     <button (click)="logout()" class="logout-button">Logout</button>
   </div>
   <div class="user-info">
+    <div class="user-header">
+      <h2>User Profile</h2>
+      <button *ngIf="isLoggedIn" (click)="openEdit()" class="edit-button">
+        Edit
+      </button>
+    </div>
     <div class="user-row">
       <span class="user-label">Name:</span>
       <span class="user-data">{{ userData.Name }}</span>
@@ -21,6 +27,10 @@
     <div class="user-row">
       <span class="user-label">Current Goal:</span>
       <span class="user-data">{{ userData.Goal }}</span>
+    </div>
+    <div class="user-row">
+      <span class="user-label">Body type:</span>
+      <span class="user-data">{{ userData.BodyType }}</span>
     </div>
   </div>
 </div>

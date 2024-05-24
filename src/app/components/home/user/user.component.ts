@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
-import { User } from '../../../models/user.model';  // Adjust the path as needed
+import { User } from '../../../models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { UserEditComponent } from '../user-edit/user-edit.component';  // Adjust the path as needed
 
 @Component({
   selector: 'app-user',
@@ -9,18 +11,18 @@ import { User } from '../../../models/user.model';  // Adjust the path as needed
 })
 export class UserComponent implements OnInit {
   userData: User | null = null;
+  isLoggedIn = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.authService.loggedIn$.subscribe(loggedIn => {
-      console.log('UserComponent login state changed:', loggedIn);  // Debugging statement
+      this.isLoggedIn = loggedIn;
       if (loggedIn) {
         this.userData = this.authService.getUserData();
         if (this.userData) {
           this.userData.Age = this.calculateAge(this.userData.DoB);
         }
-        console.log('User data updated in UserComponent:', this.userData);  // Debugging statement
       } else {
         this.userData = null;
       }
@@ -39,7 +41,7 @@ export class UserComponent implements OnInit {
     }
   }
 
-    calculateAge(dob: string): number {
+  calculateAge(dob: string): number {
     const birthDate = new Date(dob);
     const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
@@ -52,5 +54,25 @@ export class UserComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  openEdit(): void {
+    const dialogRef = this.dialog.open(UserEditComponent, {
+      width: '400px',
+      data: { ...this.userData }  // Pass a copy of the userData to avoid immediate changes
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Update user data with the edited details only if the result is not null
+        this.userData = result;
+
+        if(this.userData?.DoB){
+          this.userData.Age = this.calculateAge(this.userData.DoB ?? '');
+        }
+        // Save updated user data to localStorage or make an API call to save changes
+        localStorage.setItem('user', JSON.stringify(this.userData));
+      }
+    });
   }
 }

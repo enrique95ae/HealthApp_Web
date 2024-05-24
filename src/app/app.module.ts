@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/general/header/header.component';
@@ -27,16 +29,15 @@ import { CreateAccountComponent } from './components/general/createAccount/creat
 import { CreateFoodComponent } from './components/nutrition/create-food/create-food.component';
 import { SearchFoodOnlineComponent } from './components/nutrition/search-food-online/search-food-online.component';
 import { FoodCardComponent } from './components/nutrition/food-card/food-card.component';
-
+import { MealDetailsComponent } from './components/nutrition/meal-details/meal-details.component';
+import { UserEditComponent } from './components/home/user-edit/user-edit.component';
 
 import { routes } from './app.routes';
-
 
 import { AuthService } from './services/auth/auth.service';
 import { UsersService } from './services/users/users.service';
 import { MealsService } from './services/meals/meals.service';
 import { FoodsService } from './services/foods/foods.service';
-import { MealDetailsComponent } from './components/nutrition/meal-details/meal-details.component';
 
 
 const appRoutes: Routes = [
@@ -75,7 +76,8 @@ const appRoutes: Routes = [
     CreateFoodComponent,
     SearchFoodOnlineComponent,
     MealDetailsComponent,
-    FoodCardComponent
+    FoodCardComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -83,9 +85,10 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
-  providers: [AuthService, UsersService, MealsService,  FoodsService],
+  providers: [AuthService, UsersService, MealsService,  FoodsService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

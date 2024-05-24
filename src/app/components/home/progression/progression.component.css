@@ -22,6 +22,10 @@
     margin-top: 25px;
 }
 
+.progression-title{
+    margin-top: 25px;
+}
+
 .weight-input-wrapper {
     display: flex;
     gap: 10px;
