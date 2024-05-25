@@ -8,4 +8,5 @@ export interface User {
   BodyType: string;
   Goal: string;
   Username: string;
+  Gender: string;
 }

@@ -19,7 +19,8 @@ export class CreateAccountComponent {
     BodyType: '',
     Goal: '',
     Username: '',
-    Password: ''
+    Password: '',
+    Gender: ''
   };
   confirmPassword = '';
   submitted = false;
