@@ -29,7 +29,7 @@
     background-color: #268040;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 3px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
@@ -68,8 +68,8 @@
 }
 
 .edit-button {
-    background-color: #268040;
-    color: #fff;
+    background-color: #f4fdf2;
+    color: #268040;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -78,5 +78,6 @@
 }
 
 .edit-button:hover {
-    background-color: #124035;
+    background-color: #268040;
+    color: #fff;
 }
