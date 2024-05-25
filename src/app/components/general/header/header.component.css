@@ -1,47 +1,40 @@
 .navbar {
     background-color: #f0fce4;
-    /* Main background color */
 }
 
 .navbar-brand span {
     color: #2F594F;
-    /* Text color */
     font-weight: bold;
+}
+
+.ml-2{
+    margin-left: 10px;
 }
 
 .nav-link {
     color: #53BD63;
-    /* Link color */
 }
 
 .nav-link:hover {
     color: #53BD63;
-    /* Hover effect color */
 }
 
 .logo {
     height: 80px;
-    /* Adjusted height */
     width: 80px;
-    /* Ensure the width is the same to make it circular */
     border-radius: 50%;
-    /* Make it circular */
     object-fit: cover;
-    /* Ensure the image fits within the circular frame */
     background-color: white;
-}
-
-.container {
-    max-width: 100%;
 }
 
 .active-link {
     color: #FF8042 !important;
-    /* Color for the active link */
 }
 
-.dropdown-menu-right {
-    left: auto !important;
-    right: 0;
-    transform: translate3d(0, 0, 0) !important;
+.dropdown-menu {
+    background-color: #f0fce4;
+}
+
+.dropdown-toggle.active-link {
+    color: #FF8042 !important;
 }

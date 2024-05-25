@@ -1,11 +1,24 @@
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center" href="#">
       <img src="assets/HAW.png" alt="HealthAppWeb Logo" class="logo" />
       <span class="ml-2">HealthAppWeb</span>
     </a>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarNavDropdown"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
           <a
@@ -16,23 +29,49 @@
             >Home</a
           >
         </li>
-        <li class="nav-item dropdown" ngbDropdown>
+        <li
+          class="nav-item dropdown"
+          [ngClass]="{ 'active-link': isNutritionActive() }"
+        >
           <a
             class="nav-link dropdown-toggle"
-            href="javascript:void(0)"
-            id="nutritionDropdown"
-            ngbDropdownToggle
-            >Nutrition</a
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-          <div
-            ngbDropdownMenu
-            aria-labelledby="nutritionDropdown"
-            class="dropdown-menu-right"
-          >
-            <a class="dropdown-item" routerLink="/create-food">Create food</a>
-            <a class="dropdown-item" routerLink="/add-meal">Add a meal</a>
-            <a class="dropdown-item" routerLink="/history">History</a>
-          </div>
+            Nutrition
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/create-food"
+                routerLinkActive="active-link"
+                (routerLinkActive)="onRouterLinkActive()"
+                >Create food</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/add-meal"
+                routerLinkActive="active-link"
+                (routerLinkActive)="onRouterLinkActive()"
+                >Add a meal</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/history"
+                routerLinkActive="active-link"
+                (routerLinkActive)="onRouterLinkActive()"
+                >History</a
+              >
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
           <a

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +7,22 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  currentUrl: string;
 
-  showPopover(popover: NgbPopover): void {
-    popover.open();
+  constructor(private router: Router) {
+    this.currentUrl = this.router.url;
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl = event.urlAfterRedirects;
+      }
+    });
   }
 
-  hidePopover(popover: NgbPopover): void {
-    popover.close();
+  isNutritionActive(): boolean {
+    return this.currentUrl.includes('/create-food') || this.currentUrl.includes('/add-meal') || this.currentUrl.includes('/history');
+  }
+
+  onRouterLinkActive(): void {
+    // This function is triggered when a router link is active.
   }
 }
