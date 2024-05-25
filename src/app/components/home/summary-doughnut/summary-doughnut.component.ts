@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart, ChartOptions, ChartType, registerables } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-Chart.register(...registerables);
+Chart.register(...registerables, ChartDataLabels);
 
 @Component({
   selector: 'app-summary-doughnut',
@@ -9,38 +10,122 @@ Chart.register(...registerables);
   styleUrls: ['./summary-doughnut.component.css']
 })
 export class SummaryDoughnutComponent implements OnInit {
-  @Input() data: [string, number][] = [];
+  @Input() totalCalories: number = 1000;
+  @Input() totalFat: number = 500;
+  @Input() totalProtein: number = 250;
+  @Input() totalCarbs: number = 250;
+  @Input() consumedFat: number = 100;
+  @Input() consumedProtein: number = 100;
+  @Input() consumedCarbs: number = 100;
   @Input() title: string = '';
 
   @ViewChild('doughnutCanvas', { static: true }) doughnutCanvas!: ElementRef<HTMLCanvasElement>;
 
-  public doughnutChartLabels: string[] = [];
-  public doughnutChartData: number[] = [];
   public doughnutChartType: ChartType = 'doughnut';
   public doughnutChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        display: false,  // Disable the default legend
+      },
+      datalabels: {
+        color: 'white',
+        font: {
+          weight: 'bold',
+          size: 14,
+        },
+        textStrokeColor: 'black',
+        textStrokeWidth: 2,
+        anchor: 'center',
+        align: 'center',
+        formatter: (value, context) => {
+          const labels = context.chart.data.labels;
+          if (labels) {
+            const label = labels[context.dataIndex] as string;
+            const data = context.dataset.data as number[];
+            const isTotalSegment = context.dataIndex % 2 === 0;
+            const adjacentIndex = isTotalSegment ? context.dataIndex + 1 : context.dataIndex - 1;
+
+            if (data[adjacentIndex] !== undefined && data[context.dataIndex] > data[adjacentIndex]) {
+              if (label.includes('Protein')) {
+                return 'Protein';
+              } else if (label.includes('Carbs')) {
+                return 'Carbs';
+              } else if (label.includes('Fat')) {
+                return 'Fat';
+              }
+            }
+          }
+          return '';
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const label = context.label || '';
+            const value = context.raw as number;
+            // Assuming the raw value is already the actual value in grams
+            return `${label}: ${value} grams`;
+          },
+        },
+      },
+    },
   };
 
   ngOnInit(): void {
-    this.doughnutChartLabels = this.data.map(item => item[0]);
-    this.doughnutChartData = this.data.map(item => item[1]);
     this.createChart();
   }
 
   createChart(): void {
     const canvas = this.doughnutCanvas.nativeElement;
+    const colors = ['#FF6384', '#36A2EB', '#FFCE56'];
+    const fadedColors = colors.map(color => this.fadeColor(color, 0.3));
+
+    // Use actual values for the data
+    const totalData = [
+      this.totalFat - this.consumedFat,
+      this.totalProtein - this.consumedProtein,
+      this.totalCarbs - this.consumedCarbs
+    ];
+
+    const consumedData = [
+      this.consumedFat,
+      this.consumedProtein,
+      this.consumedCarbs
+    ];
+
+    const data = [];
+    const backgroundColor = [];
+
+    // Add data for each segment and its consumed part
+    for (let i = 0; i < totalData.length; i++) {
+      data.push(totalData[i]);
+      backgroundColor.push(fadedColors[i]);
+      data.push(consumedData[i]);
+      backgroundColor.push(colors[i]);
+    }
+
     new Chart(canvas, {
       type: this.doughnutChartType,
       data: {
-        labels: this.doughnutChartLabels,
+        labels: ['Total Fat', 'Consumed Fat', 'Total Protein', 'Consumed Protein', 'Total Carbs', 'Consumed Carbs'],
         datasets: [{
-          data: this.doughnutChartData,
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+          data: data,
+          backgroundColor: backgroundColor,
+          hoverBackgroundColor: backgroundColor,
+          borderWidth: 1,
         }]
       },
       options: this.doughnutChartOptions
     });
+  }
+
+  fadeColor(color: string, percent: number): string {
+    const num = parseInt(color.replace("#", ""), 16);
+    const R = (num >> 16) + Math.round((255 - (num >> 16)) * percent);
+    const G = (num >> 8 & 0x00FF) + Math.round((255 - (num >> 8 & 0x00FF)) * percent);
+    const B = (num & 0x0000FF) + Math.round((255 - (num & 0x0000FF)) * percent);
+    return `rgba(${R},${G},${B},${percent})`;
   }
 }
