@@ -16,7 +16,20 @@ export class UserEditComponent {
   ) {}
 
   onSave(): void {
-    this.userService.updateUser(this.data).subscribe(
+    const userId = this.data.Id;
+    const updateData = {
+      Name: this.data.Name,
+      DoB: this.data.DoB,
+      Weight: this.data.Weight,
+      Height: this.data.Height,
+      BodyType: this.data.BodyType,
+      Goal: this.data.Goal,
+      Username: this.data.Username,
+      Gender: this.data.Gender,
+      Id: this.data.Id
+    };
+    
+    this.userService.updateUser(userId, updateData).subscribe(
       updatedUser => {
         this.dialogRef.close(updatedUser);  // Pass back the updated data
       },

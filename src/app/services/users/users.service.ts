@@ -16,8 +16,7 @@ export class UsersService {
     return this.http.post(`${this.baseUrl}/users/login`, body);
   }
 
-    updateUser(user: User): Observable<User> {
-    const userId = user.Id; 
+  updateUser(userId: number, user: Partial<User>): Observable<User> {
     return this.http.put<User>(`${this.baseUrl}/users/${userId}`, user);
   }
 }

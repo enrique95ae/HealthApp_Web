@@ -59,18 +59,15 @@ export class UserComponent implements OnInit {
   openEdit(): void {
     const dialogRef = this.dialog.open(UserEditComponent, {
       width: '400px',
-      data: { ...this.userData }  // Pass a copy of the userData to avoid immediate changes
+      data: { ...this.userData } 
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Update user data with the edited details only if the result is not null
         this.userData = result;
-
-        if(this.userData?.DoB){
-          this.userData.Age = this.calculateAge(this.userData.DoB ?? '');
-        }
-        // Save updated user data to localStorage or make an API call to save changes
+        if( this.userData)
+        this.userData.Age = this.calculateAge(this.userData.DoB ?? '');
+      console.log(this.userData);
         localStorage.setItem('user', JSON.stringify(this.userData));
       }
     });
