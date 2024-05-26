@@ -1,14 +1,14 @@
 <div class="summary-container">
-  <h2 class="summary-title">Summary</h2>
+  <h2 class="summary-title">Today's summary</h2>
   <div class="summary-content">
     <app-summary-doughnut
-      [totalCalories]="1000"
-      [totalFat]="500"
-      [totalProtein]="250"
-      [totalCarbs]="250"
-      [consumedFat]="500"
-      [consumedProtein]="230"
-      [consumedCarbs]="100"
+      [totalCalories]="macrosData.totalCalories"
+      [totalFat]="macrosData.totalFat"
+      [totalProtein]="macrosData.totalProtein"
+      [totalCarbs]="macrosData.totalCarbs"
+      [consumedFat]="macrosData.consumedFat"
+      [consumedProtein]="macrosData.consumedProtein"
+      [consumedCarbs]="macrosData.consumedCarbs"
       title="Today's intake goal"
     >
     </app-summary-doughnut>

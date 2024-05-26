@@ -21,6 +21,10 @@ export class SummaryDoughnutComponent implements OnInit {
 
   @ViewChild('doughnutCanvas', { static: true }) doughnutCanvas!: ElementRef<HTMLCanvasElement>;
 
+  private originalConsumedFat!: number;
+  private originalConsumedProtein!: number;
+  private originalConsumedCarbs!: number;
+
   public doughnutChartType: ChartType = 'doughnut';
   public doughnutChartOptions: ChartOptions = {
     responsive: true,
@@ -65,8 +69,29 @@ export class SummaryDoughnutComponent implements OnInit {
           label: (context) => {
             const label = context.label || '';
             const value = context.raw as number;
-            // Assuming the raw value is already the actual value in grams
-            return `${label}: ${value} grams`;
+            let originalConsumedAmount = 0;
+            let totalAmount = 0;
+
+            switch (label) {
+              case 'Consumed Fat':
+                originalConsumedAmount = this.originalConsumedFat;
+                totalAmount = this.totalFat;
+                break;
+              case 'Consumed Protein':
+                originalConsumedAmount = this.originalConsumedProtein;
+                totalAmount = this.totalProtein;
+                break;
+              case 'Consumed Carbs':
+                originalConsumedAmount = this.originalConsumedCarbs;
+                totalAmount = this.totalCarbs;
+                break;
+              default:
+                originalConsumedAmount = 0;
+                totalAmount = 0;
+                break;
+            }
+
+            return [`${label}: ${originalConsumedAmount} grams`, `Goal amount: ${totalAmount} grams`];
           },
         },
       },
@@ -74,6 +99,10 @@ export class SummaryDoughnutComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.originalConsumedFat = this.consumedFat;
+    this.originalConsumedProtein = this.consumedProtein;
+    this.originalConsumedCarbs = this.consumedCarbs;
+
     this.createChart();
   }
 
@@ -82,17 +111,22 @@ export class SummaryDoughnutComponent implements OnInit {
     const colors = ['#FF6384', '#36A2EB', '#FFCE56'];
     const fadedColors = colors.map(color => this.fadeColor(color, 0.3));
 
+    // Cap consumed values at their respective total values
+    const cappedConsumedFat = Math.min(this.consumedFat, this.totalFat);
+    const cappedConsumedProtein = Math.min(this.consumedProtein, this.totalProtein);
+    const cappedConsumedCarbs = Math.min(this.consumedCarbs, this.totalCarbs);
+
     // Use actual values for the data
     const totalData = [
-      this.totalFat - this.consumedFat,
-      this.totalProtein - this.consumedProtein,
-      this.totalCarbs - this.consumedCarbs
+      this.totalFat - cappedConsumedFat,
+      this.totalProtein - cappedConsumedProtein,
+      this.totalCarbs - cappedConsumedCarbs
     ];
 
     const consumedData = [
-      this.consumedFat,
-      this.consumedProtein,
-      this.consumedCarbs
+      cappedConsumedFat,
+      cappedConsumedProtein,
+      cappedConsumedCarbs
     ];
 
     const data = [];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../env/env';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,10 @@ export class HomeComponent implements OnInit {
   userId: number = 1;
   private baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  // Macros data
+  macrosData: any = {};
+
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -22,15 +26,25 @@ export class HomeComponent implements OnInit {
       this.userId = user.Id;
     }
 
+    this.authService.fetchBmr();
+    this.authService.fetchMacros();
+    this.loadMacrosFromStorage();
     this.checkTodayWeight();
     this.fetchProgressionData();
+  }
+
+  loadMacrosFromStorage(): void {
+    const macros = localStorage.getItem('macros');
+    if (macros) {
+      this.macrosData = JSON.parse(macros);
+    }
   }
 
   checkTodayWeight(): void {
     this.http.get<any>(`${this.baseUrl}/users/weights/today/${this.userId}`).subscribe({
       next: (response) => {
         if (response && typeof response.weight_entered !== 'undefined') {
-                   this.showWeightInput = !response.weight_entered;
+          this.showWeightInput = !response.weight_entered;
         }
       },
       error: (error) => {
@@ -66,4 +80,3 @@ export class HomeComponent implements OnInit {
     });
   }
 }
-
