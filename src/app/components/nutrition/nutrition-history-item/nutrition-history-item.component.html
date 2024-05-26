@@ -1,0 +1,16 @@
+<div class="nutrition-history-item-container">
+  <div class="header">
+    <h3 class="title">{{ item.Title }}</h3>
+    <span class="date">{{ item.CreationDate }} {{ item.CreationTime }}</span>
+  </div>
+  <div class="info">
+    <div>Meal with {{ item.Foods.length }} ingredients</div>
+    <div class="macros">
+      <div><span>Calories:</span> {{ getTotalCalories() }}</div>
+      <div><span>Proteins:</span> {{ getTotalProteins() }} grams</div>
+      <div><span>Carbs:</span> {{ getTotalCarbs() }} grams</div>
+      <div><span>Fats:</span> {{ getTotalFats() }} grams</div>
+    </div>
+  </div>
+  <button class="details-button" (click)="seeDetails()">See details</button>
+</div>

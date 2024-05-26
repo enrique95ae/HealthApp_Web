@@ -31,6 +31,8 @@ import { SearchFoodOnlineComponent } from './components/nutrition/search-food-on
 import { FoodCardComponent } from './components/nutrition/food-card/food-card.component';
 import { MealDetailsComponent } from './components/nutrition/meal-details/meal-details.component';
 import { UserEditComponent } from './components/home/user-edit/user-edit.component';
+import { NutritionHistoryComponent } from './components/nutrition/nutrition-history/nutrition-history.component';
+import { NutritionHistoryItemComponent } from './components/nutrition/nutrition-history-item/nutrition-history-item.component';
 
 import { routes } from './app.routes';
 
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
   { path: 'workouts', component: WorkoutsComponent },
   { path: 'more', component: MoreComponent },
   { path: 'add-meal', component: AddMealComponent }, 
-  { path: 'history', component: HomeComponent },
+  { path: 'history', component: NutritionHistoryComponent },
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'create-food', component: CreateFoodComponent},
   { path: 'search-food-online', component: SearchFoodOnlineComponent},
@@ -77,7 +79,9 @@ const appRoutes: Routes = [
     SearchFoodOnlineComponent,
     MealDetailsComponent,
     FoodCardComponent,
-    UserEditComponent
+    UserEditComponent,
+    NutritionHistoryComponent,
+    NutritionHistoryItemComponent
   ],
   imports: [
     BrowserModule,

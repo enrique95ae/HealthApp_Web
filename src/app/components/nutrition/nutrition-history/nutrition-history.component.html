@@ -1,0 +1,29 @@
+<div class="nutrition-history-container">
+  <div class="header-container">
+    <h2 class="title">Nutrition History</h2>
+    <div class="navigation-buttons">
+      <button
+        class="page-link"
+        [disabled]="currentPage === 1"
+        (click)="goToPage(currentPage - 1)"
+      >
+        Previous
+      </button>
+      <button
+        class="page-link"
+        [disabled]="currentPage === totalPages"
+        (click)="goToPage(currentPage + 1)"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  <div class="items-container">
+    <div
+      class="nutrition-history-item-wrapper"
+      *ngFor="let item of displayedItems"
+    >
+      <app-nutrition-history-item [item]="item"></app-nutrition-history-item>
+    </div>
+  </div>
+</div>

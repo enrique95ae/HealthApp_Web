@@ -1,0 +1,63 @@
+.nutrition-history-item-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    /* Ensure it takes the full height of its container */
+    box-sizing: border-box;
+    /* Ensure padding is included in the total height and width */
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.title {
+    font-weight: bold;
+    margin: 0;
+}
+
+.date {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.info {
+    margin-bottom: 10px;
+    flex-grow: 1;
+    /* Ensure it grows to take available space */
+}
+
+.macros {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.macros div {
+    font-size: 0.9rem;
+}
+
+.macros div span {
+    font-weight: bold;
+    /* Make the macro labels bold */
+}
+
+.details-button {
+    background-color: #268040;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.details-button:hover {
+    background-color: #1b5e2d;
+}
