@@ -1,15 +1,13 @@
 <div class="progression-container">
-  <div class="progression-header">
-    <h3 class="progression-title">{{ title }}</h3>
-    <div *ngIf="showWeightInput" class="weight-input-wrapper">
-      <input
-        type="number"
-        step="0.01"
-        placeholder="Today's weight"
-        [(ngModel)]="todayWeight"
-      />
-      <button (click)="submitWeight()" [disabled]="!todayWeight">Submit</button>
-    </div>
+  <h3 class="progression-title">{{ title }}</h3>
+  <div *ngIf="showWeightInput" class="weight-input-wrapper">
+    <input
+      type="number"
+      step="0.01"
+      placeholder="Today's weight"
+      [(ngModel)]="todayWeight"
+    />
+    <button (click)="submitWeight()" [disabled]="!todayWeight">Submit</button>
   </div>
   <canvas #lineChartCanvas></canvas>
 </div>
