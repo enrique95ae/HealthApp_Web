@@ -12,5 +12,31 @@
       title="Today's intake goal"
     >
     </app-summary-doughnut>
+    <div class="progress-bars-container">
+      <app-progress-bar
+        label="Calories"
+        [totalAmount]="bmr"
+        [progressAmount]="consumedCalories"
+        color="#4BC0C0"
+      ></app-progress-bar>
+      <app-progress-bar
+        label="Proteins"
+        [totalAmount]="macrosData.totalProtein"
+        [progressAmount]="macrosData.consumedProtein"
+        color="#36A2EB"
+      ></app-progress-bar>
+      <app-progress-bar
+        label="Carbs"
+        [totalAmount]="macrosData.totalCarbs"
+        [progressAmount]="macrosData.consumedCarbs"
+        color="#FFCE56"
+      ></app-progress-bar>
+      <app-progress-bar
+        label="Fats"
+        [totalAmount]="macrosData.totalFat"
+        [progressAmount]="macrosData.consumedFat"
+        color="#FF6384"
+      ></app-progress-bar>
+    </div>
   </div>
 </div>

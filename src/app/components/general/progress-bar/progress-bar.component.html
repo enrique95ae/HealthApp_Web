@@ -1,0 +1,11 @@
+<div class="progress-bar-container">
+  <div class="progress-bar-label">
+    {{ progressPercentage.toFixed(2) }}% of {{ label }}
+  </div>
+  <div class="progress-bar">
+    <div
+      class="progress"
+      [ngStyle]="{ width: progressPercentage + '%', backgroundColor: color }"
+    ></div>
+  </div>
+</div>

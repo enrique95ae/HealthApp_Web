@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Food {
   Id: number;
@@ -33,7 +34,7 @@ interface NutritionHistoryItem {
 export class NutritionHistoryItemComponent implements OnInit, OnChanges {
   @Input() item!: NutritionHistoryItem;
 
-  constructor() {
+  constructor(private router: Router) {
     console.log('Constructor Item:', this.item);  // Debugging statement
   }
 
@@ -64,7 +65,6 @@ export class NutritionHistoryItemComponent implements OnInit, OnChanges {
   }
 
   seeDetails(): void {
-    // Implement the logic to see details of the meal
-    console.log('See details for:', this.item);
+    this.router.navigate(['/meal-details', this.item.Id]);
   }
 }

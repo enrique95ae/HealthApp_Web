@@ -33,6 +33,7 @@ import { MealDetailsComponent } from './components/nutrition/meal-details/meal-d
 import { UserEditComponent } from './components/home/user-edit/user-edit.component';
 import { NutritionHistoryComponent } from './components/nutrition/nutrition-history/nutrition-history.component';
 import { NutritionHistoryItemComponent } from './components/nutrition/nutrition-history-item/nutrition-history-item.component';
+import { ProgressBarComponent } from './components/general/progress-bar/progress-bar.component';
 
 import { routes } from './app.routes';
 
@@ -40,6 +41,7 @@ import { AuthService } from './services/auth/auth.service';
 import { UsersService } from './services/users/users.service';
 import { MealsService } from './services/meals/meals.service';
 import { FoodsService } from './services/foods/foods.service';
+import { CommonModule } from '@angular/common';
 
 
 const appRoutes: Routes = [
@@ -81,7 +83,8 @@ const appRoutes: Routes = [
     FoodCardComponent,
     UserEditComponent,
     NutritionHistoryComponent,
-    NutritionHistoryItemComponent
+    NutritionHistoryItemComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgbModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    CommonModule
   ],
   providers: [AuthService, UsersService, MealsService,  FoodsService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
