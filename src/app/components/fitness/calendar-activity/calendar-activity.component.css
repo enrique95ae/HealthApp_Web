@@ -1,0 +1,16 @@
+.activity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.remove-button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}

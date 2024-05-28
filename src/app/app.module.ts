@@ -7,6 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/general/header/header.component';
@@ -34,6 +38,9 @@ import { UserEditComponent } from './components/home/user-edit/user-edit.compone
 import { NutritionHistoryComponent } from './components/nutrition/nutrition-history/nutrition-history.component';
 import { NutritionHistoryItemComponent } from './components/nutrition/nutrition-history-item/nutrition-history-item.component';
 import { ProgressBarComponent } from './components/general/progress-bar/progress-bar.component';
+import { ScheduleComponent } from './components/fitness/schedule/schedule.component';
+import { CalendarComponent } from './components/fitness/calendar/calendar.component';
+import { CalendarActivitiesListComponent } from './components/fitness/calendar-activities-list/calendar-activities-list.component';
 
 import { routes } from './app.routes';
 
@@ -42,7 +49,7 @@ import { UsersService } from './services/users/users.service';
 import { MealsService } from './services/meals/meals.service';
 import { FoodsService } from './services/foods/foods.service';
 import { CommonModule } from '@angular/common';
-
+import { CalendarActivityComponent } from './components/fitness/calendar-activity/calendar-activity.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -54,7 +61,8 @@ const appRoutes: Routes = [
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'create-food', component: CreateFoodComponent},
   { path: 'search-food-online', component: SearchFoodOnlineComponent},
-  { path: 'meal-details/:id', component: MealDetailsComponent}
+  { path: 'meal-details/:id', component: MealDetailsComponent},
+  { path: 'schedule', component: ScheduleComponent},
 ];
 
 @NgModule({
@@ -84,8 +92,12 @@ const appRoutes: Routes = [
     UserEditComponent,
     NutritionHistoryComponent,
     NutritionHistoryItemComponent,
-    ProgressBarComponent
-  ],
+    ProgressBarComponent,
+    ScheduleComponent,
+    CalendarComponent,
+    CalendarActivitiesListComponent,
+    CalendarActivityComponent
+   ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -94,7 +106,13 @@ const appRoutes: Routes = [
     NgbModule,
     ReactiveFormsModule,
     MatDialogModule,
-    CommonModule
+    CommonModule,
+    DragDropModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [AuthService, UsersService, MealsService,  FoodsService, provideAnimationsAsync()],
   bootstrap: [AppComponent]

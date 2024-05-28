@@ -1,0 +1,14 @@
+<div class="activities-header">
+  <span class="activities-title">My workouts</span>
+  <button class="add-button">+</button>
+</div>
+<div class="activities-list">
+  <div
+    class="activity"
+    *ngFor="let activity of activities"
+    draggable="true"
+    (dragstart)="onDragStart($event, activity)"
+  >
+    {{ activity.name }}
+  </div>
+</div>

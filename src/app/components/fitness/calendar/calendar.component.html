@@ -1,0 +1,35 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <div class="empty-cell"></div>
+    <!-- Empty cell to align with the hour column -->
+    <div class="day-label">Sunday</div>
+    <div class="day-label">Monday</div>
+    <div class="day-label">Tuesday</div>
+    <div class="day-label">Wednesday</div>
+    <div class="day-label">Thursday</div>
+    <div class="day-label">Friday</div>
+    <div class="day-label">Saturday</div>
+  </div>
+  <div class="calendar-body" #calendarBody>
+    <div class="hour-column">
+      <div class="hour-label" *ngFor="let hour of hours">{{ hour }}</div>
+    </div>
+    <div class="calendar-grid">
+      <div
+        *ngFor="let cell of cells; let i = index"
+        class="grid-cell"
+        (drop)="onDrop($event, i)"
+        (dragover)="onDragOver($event)"
+      >
+        <ng-container *ngIf="getCellContent(i)">
+          <app-calendar-activity
+            [title]="getCellContent(i).name"
+            [backgroundColor]="'#268040'"
+            (remove)="removeActivity(i)"
+          >
+          </app-calendar-activity>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
