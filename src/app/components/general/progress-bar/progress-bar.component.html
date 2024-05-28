@@ -1,6 +1,11 @@
 <div class="progress-bar-container">
-  <div class="progress-bar-label">
-    {{ progressPercentage.toFixed(2) }}% of {{ label }}
+  <div class="progress-bar-label-container">
+    <div class="progress-bar-label">
+      {{ progressPercentage.toFixed(2) }}% of {{ label }}
+    </div>
+    <div class="progress-bar-total-amount">
+      of {{ totalAmount }} {{ label === "Calories" ? "kcal" : "grams" }}
+    </div>
   </div>
   <div class="progress-bar">
     <div
