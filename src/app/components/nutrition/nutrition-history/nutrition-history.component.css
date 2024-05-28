@@ -1,6 +1,6 @@
 .nutrition-history-container {
     padding: 20px;
-    background-color: #f4fdf2;
+    background-color: #fff;
     border-radius: 10px;
 }
 
@@ -38,9 +38,8 @@ button.page-link:disabled {
 .items-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap:5px;
     justify-content: flex-start;
-    /* Align items to the start */
 }
 
 .nutrition-history-item-wrapper {
