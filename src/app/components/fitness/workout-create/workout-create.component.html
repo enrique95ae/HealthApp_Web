@@ -1,0 +1,22 @@
+<h2>{{ isEditMode ? "Edit Workout" : "Create a Workout" }}</h2>
+<div>
+  <label for="title">Title</label>
+  <input id="title" [(ngModel)]="title" placeholder="Title" />
+</div>
+<div>
+  <label for="type">Type</label>
+  <input id="type" [(ngModel)]="type" placeholder="Type: e.g Strength" />
+</div>
+<div>
+  <label for="description">Description</label>
+  <input
+    id="description"
+    [(ngModel)]="description"
+    placeholder="Description e.g. Shoulders and a bit of abs..."
+  />
+</div>
+<div>
+  <label for="color">Color</label>
+  <input id="color" type="color" [(ngModel)]="color" />
+</div>
+<button (click)="saveWorkout()">{{ isEditMode ? "Modify" : "Add" }}</button>

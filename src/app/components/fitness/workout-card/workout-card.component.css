@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 100%;
+    /* This ensures a 1:1 aspect ratio */
+    position: relative;
+    background-color: var(--background-color, white);
+}
+
+.card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.add-new span {
+    font-size: 3em;
+    color: white;
+}

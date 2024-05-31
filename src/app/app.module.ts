@@ -42,14 +42,17 @@ import { ScheduleComponent } from './components/fitness/schedule/schedule.compon
 import { CalendarComponent } from './components/fitness/calendar/calendar.component';
 import { CalendarActivitiesListComponent } from './components/fitness/calendar-activities-list/calendar-activities-list.component';
 
-import { routes } from './app.routes';
-
 import { AuthService } from './services/auth/auth.service';
 import { UsersService } from './services/users/users.service';
 import { MealsService } from './services/meals/meals.service';
 import { FoodsService } from './services/foods/foods.service';
 import { CommonModule } from '@angular/common';
 import { CalendarActivityComponent } from './components/fitness/calendar-activity/calendar-activity.component';
+import { WorkoutCardComponent } from './components/fitness/workout-card/workout-card.component';
+import { WorkoutsListComponent } from './components/fitness/workouts-list/workouts-list.component';
+import { WorkoutsService } from './services/workouts/workouts.service';
+import { WorkoutCreateComponent } from './components/fitness/workout-create/workout-create.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -63,6 +66,7 @@ const appRoutes: Routes = [
   { path: 'search-food-online', component: SearchFoodOnlineComponent},
   { path: 'meal-details/:id', component: MealDetailsComponent},
   { path: 'schedule', component: ScheduleComponent},
+  { path: 'workouts-list', component: WorkoutsListComponent },
 ];
 
 @NgModule({
@@ -96,7 +100,10 @@ const appRoutes: Routes = [
     ScheduleComponent,
     CalendarComponent,
     CalendarActivitiesListComponent,
-    CalendarActivityComponent
+    CalendarActivityComponent,
+    WorkoutCardComponent,
+    WorkoutsListComponent,
+    WorkoutCreateComponent
    ],
   imports: [
     BrowserModule,
@@ -114,7 +121,7 @@ const appRoutes: Routes = [
       useFactory: adapterFactory,
     }),
   ],
-  providers: [AuthService, UsersService, MealsService,  FoodsService, provideAnimationsAsync()],
+  providers: [AuthService, UsersService, MealsService,  FoodsService, WorkoutsService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

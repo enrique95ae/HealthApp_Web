@@ -1,0 +1,12 @@
+<div class="workouts-container">
+  <app-workout-card
+    *ngFor="let workout of workouts"
+    [title]="workout.Title"
+    [type]="workout.Type"
+    [description]="workout.Description"
+    [backgroundColor]="workout.Color"
+    [isAddNew]="workout.isAddNew"
+    (click)="openCreateWorkoutDialog(workout)"
+  >
+  </app-workout-card>
+</div>
