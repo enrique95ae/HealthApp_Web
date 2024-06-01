@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Workout } from '../../models/workout.model';
 import { environment } from '../../env/env';
+import { ExerciseSet } from '../../models/exerciseSet.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class WorkoutsService {
 
   updateWorkout(workout: Workout): Observable<any> {
     return this.http.put(`${this.baseUrl}/workouts/workouts/${workout.Id}`, workout);
+  }
+
+  getExerciseSets(workoutId: number): Observable<ExerciseSet[]> {
+    return this.http.get<ExerciseSet[]>(`${this.baseUrl}/workouts/${workoutId}/exercise-sets`);
   }
 }

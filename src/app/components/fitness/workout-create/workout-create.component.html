@@ -1,22 +1,49 @@
-<h2>{{ isEditMode ? "Edit Workout" : "Create a Workout" }}</h2>
-<div>
-  <label for="title">Title</label>
-  <input id="title" [(ngModel)]="title" placeholder="Title" />
+<div class="container">
+  <h2>{{ isEditMode ? "Edit Workout" : "Create a Workout" }}</h2>
+  <div>
+    <label for="title">Title</label>
+    <input
+      id="title"
+      [(ngModel)]="title"
+      placeholder="Title"
+      (ngModelChange)="hasUnsavedChanges = true"
+    />
+  </div>
+  <div>
+    <label for="type">Type</label>
+    <input
+      id="type"
+      [(ngModel)]="type"
+      placeholder="Type: e.g Strength"
+      (ngModelChange)="hasUnsavedChanges = true"
+    />
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <input
+      id="description"
+      [(ngModel)]="description"
+      placeholder="Description e.g. Shoulders and a bit of abs..."
+      (ngModelChange)="hasUnsavedChanges = true"
+    />
+  </div>
+  <div>
+    <label for="color">Color</label>
+    <input
+      id="color"
+      type="color"
+      [(ngModel)]="color"
+      (ngModelChange)="hasUnsavedChanges = true"
+    />
+  </div>
+  <div>
+    <label>Exercises: {{ exerciseCount }}</label>
+    <button *ngIf="isEditMode" (click)="openWorkoutDetail()">
+      Add exercises to workout
+    </button>
+  </div>
+  <div class="actions">
+    <button (click)="saveWorkout()">{{ isEditMode ? "Modify" : "Add" }}</button>
+    <button (click)="onClose()">Cancel</button>
+  </div>
 </div>
-<div>
-  <label for="type">Type</label>
-  <input id="type" [(ngModel)]="type" placeholder="Type: e.g Strength" />
-</div>
-<div>
-  <label for="description">Description</label>
-  <input
-    id="description"
-    [(ngModel)]="description"
-    placeholder="Description e.g. Shoulders and a bit of abs..."
-  />
-</div>
-<div>
-  <label for="color">Color</label>
-  <input id="color" type="color" [(ngModel)]="color" />
-</div>
-<button (click)="saveWorkout()">{{ isEditMode ? "Modify" : "Add" }}</button>

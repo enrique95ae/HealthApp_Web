@@ -45,6 +45,8 @@ export class WorkoutsListComponent implements OnInit {
   openCreateWorkoutDialog(workout?: WorkoutWithAddNew): void {
     const dialogRef = this.dialog.open(WorkoutCreateComponent, {
       width: '400px',
+      maxWidth: '95vw',
+      disableClose: true, // Disable closing on backdrop click
       data: workout && !workout.isAddNew ? workout : null
     });
 

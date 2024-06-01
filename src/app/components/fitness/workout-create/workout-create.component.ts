@@ -1,8 +1,12 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { WorkoutsService } from '../../../services/workouts/workouts.service';
 import { Workout } from '../../../models/workout.model';
 import { makeColorPaler } from '../../../utils/color.utils';
+import { ConfirmationDialogComponent } from '../../general/confirmation-dialog/confirmation-dialog.component';
+
+import { WorkoutDetailComponent } from '../../fitness/workout-details/workout-details.component';
+import { ExerciseSet } from '../../../models/exerciseSet.model';
 
 @Component({
   selector: 'app-workout-create',
@@ -17,10 +21,13 @@ export class WorkoutCreateComponent {
   originalColor: string = ''; // Store the original color to detect changes
   isEditMode: boolean = false;
   workoutId: number | null = null;
+  hasUnsavedChanges: boolean = false;
+  exerciseSets: ExerciseSet[] = []; // Store the exercise sets
 
   constructor(
     private workoutsService: WorkoutsService,
     private dialogRef: MatDialogRef<WorkoutCreateComponent>,
+    private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: Workout | null
   ) {
     if (data) {
@@ -31,6 +38,10 @@ export class WorkoutCreateComponent {
       this.originalColor = data.Color; // Set original color
       this.isEditMode = true;
       this.workoutId = data.Id;
+      // Fetch existing exercise sets for the workout
+      this.workoutsService.getExerciseSets(data.Id).subscribe(exerciseSets => {
+        this.exerciseSets = exerciseSets;
+      });
     }
   }
 
@@ -69,5 +80,36 @@ export class WorkoutCreateComponent {
         }
       );
     }
+  }
+
+  onClose() {
+    if (this.hasUnsavedChanges) {
+      const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
+
+      confirmDialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.dialogRef.close(false);
+        }
+      });
+    } else {
+      this.dialogRef.close(false);
+    }
+  }
+
+  openWorkoutDetail() {
+    const dialogRef = this.dialog.open(WorkoutDetailComponent, {
+      width: '600px',
+      data: { workoutId: this.workoutId, exerciseSets: this.exerciseSets }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.exerciseSets = result; // Update exercise sets after closing detail dialog
+      }
+    });
+  }
+
+  get exerciseCount(): number {
+    return this.exerciseSets.length;
   }
 }

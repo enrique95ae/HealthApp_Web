@@ -52,6 +52,8 @@ import { WorkoutCardComponent } from './components/fitness/workout-card/workout-
 import { WorkoutsListComponent } from './components/fitness/workouts-list/workouts-list.component';
 import { WorkoutsService } from './services/workouts/workouts.service';
 import { WorkoutCreateComponent } from './components/fitness/workout-create/workout-create.component';
+import { ConfirmationDialogComponent } from './components/general/confirmation-dialog/confirmation-dialog.component';
+import { WorkoutDetailComponent } from './components/fitness/workout-details/workout-details.component';
 
 
 const appRoutes: Routes = [
@@ -103,7 +105,9 @@ const appRoutes: Routes = [
     CalendarActivityComponent,
     WorkoutCardComponent,
     WorkoutsListComponent,
-    WorkoutCreateComponent
+    WorkoutCreateComponent,
+    ConfirmationDialogComponent, 
+    WorkoutDetailComponent
    ],
   imports: [
     BrowserModule,
