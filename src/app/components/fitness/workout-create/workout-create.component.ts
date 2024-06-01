@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WorkoutsService } from '../../../services/workouts/workouts.service';
 import { Workout } from '../../../models/workout.model';
+import { makeColorPaler } from '../../../utils/color.utils';
 
 @Component({
   selector: 'app-workout-create',
@@ -13,6 +14,7 @@ export class WorkoutCreateComponent {
   type: string = '';
   description: string = '';
   color: string = '#000000'; // Default color
+  originalColor: string = ''; // Store the original color to detect changes
   isEditMode: boolean = false;
   workoutId: number | null = null;
 
@@ -26,16 +28,22 @@ export class WorkoutCreateComponent {
       this.type = data.Type;
       this.description = data.Description;
       this.color = data.Color;
+      this.originalColor = data.Color; // Set original color
       this.isEditMode = true;
       this.workoutId = data.Id;
     }
   }
 
   saveWorkout() {
+    let colorToUse = this.color;
+    if (!this.isEditMode || this.color !== this.originalColor) {
+      colorToUse = makeColorPaler(this.color);
+    }
+
     const workout: Workout = {
       Id: this.workoutId ?? 0,
       Title: this.title,
-      Color: this.color,
+      Color: colorToUse,
       Type: this.type,
       Description: this.description
     };
