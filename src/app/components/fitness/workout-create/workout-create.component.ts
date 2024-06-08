@@ -4,8 +4,7 @@ import { WorkoutsService } from '../../../services/workouts/workouts.service';
 import { Workout } from '../../../models/workout.model';
 import { makeColorPaler } from '../../../utils/color.utils';
 import { ConfirmationDialogComponent } from '../../general/confirmation-dialog/confirmation-dialog.component';
-
-import { WorkoutDetailComponent } from '../../fitness/workout-details/workout-details.component';
+import { WorkoutDetailComponent } from '../../fitness/workout-details/workout-details.component'; // Adjusted import path
 import { ExerciseSet } from '../../../models/exerciseSet.model';
 
 @Component({

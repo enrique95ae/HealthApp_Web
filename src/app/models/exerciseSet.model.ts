@@ -1,5 +1,5 @@
 export interface ExerciseSet {
-  Id: number;
+  Id?: number;
   Exercise_Id: number;
   Sets: number;
   Reps: number;

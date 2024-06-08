@@ -1,0 +1,67 @@
+<div class="exercise-search-container">
+  <div class="scrollable-content">
+    <div class="dropdown-search">
+      <label for="muscle-select">Search by muscle</label>
+      <select
+        id="muscle-select"
+        [(ngModel)]="selectedMuscle"
+        class="muscle-dropdown"
+        aria-label="Search by muscle"
+      >
+        <option value="" disabled selected hidden>
+          Select a target muscle
+        </option>
+        <option *ngFor="let muscle of muscles" [value]="muscle">
+          {{ muscle }}
+        </option>
+      </select>
+      <button (click)="searchExercise()" class="search-button">Search</button>
+    </div>
+
+    <hr />
+
+    <div class="input-field">
+      <label for="name">Name</label>
+      <input id="name" type="text" [(ngModel)]="exercise.name" />
+    </div>
+
+    <div class="input-field">
+      <label for="type">Type</label>
+      <input id="type" type="text" [(ngModel)]="exercise.type" />
+    </div>
+
+    <div class="input-field">
+      <label for="muscle">Muscle</label>
+      <input id="muscle" type="text" [(ngModel)]="exercise.muscle" />
+    </div>
+
+    <div class="input-field">
+      <label for="sets">Sets</label>
+      <input id="sets" type="number" [(ngModel)]="exercise.sets" />
+    </div>
+
+    <div class="input-field">
+      <label for="reps">Reps</label>
+      <input id="reps" type="number" [(ngModel)]="exercise.reps" />
+    </div>
+
+    <div class="input-field">
+      <label for="equipment">Equipment</label>
+      <input id="equipment" type="text" [(ngModel)]="exercise.equipment" />
+    </div>
+
+    <div class="input-field">
+      <label for="difficulty">Difficulty</label>
+      <input id="difficulty" type="text" [(ngModel)]="exercise.difficulty" />
+    </div>
+
+    <div class="input-field">
+      <label for="instructions">Instructions</label>
+      <textarea
+        id="instructions"
+        [(ngModel)]="exercise.instructions"
+      ></textarea>
+    </div>
+  </div>
+  <button (click)="addExercise()" class="add-button">Add Exercise</button>
+</div>

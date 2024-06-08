@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { WorkoutsService } from '../../../services/workouts/workouts.service';
 import { Workout, WorkoutWithAddNew } from '../../../models/workout.model';
 import { WorkoutCreateComponent } from '../workout-create/workout-create.component';
@@ -12,7 +13,7 @@ import { WorkoutCreateComponent } from '../workout-create/workout-create.compone
 export class WorkoutsListComponent implements OnInit {
   workouts: WorkoutWithAddNew[] = [];
 
-  constructor(private workoutsService: WorkoutsService, public dialog: MatDialog) { }
+  constructor(private workoutsService: WorkoutsService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadWorkouts();
@@ -42,18 +43,22 @@ export class WorkoutsListComponent implements OnInit {
     );
   }
 
-  openCreateWorkoutDialog(workout?: WorkoutWithAddNew): void {
-    const dialogRef = this.dialog.open(WorkoutCreateComponent, {
-      width: '400px',
-      maxWidth: '95vw',
-      disableClose: true, // Disable closing on backdrop click
-      data: workout && !workout.isAddNew ? workout : null
-    });
+  openDialog(workout: WorkoutWithAddNew): void {
+    if (workout.isAddNew) {
+      const dialogRef = this.dialog.open(WorkoutCreateComponent, {
+        width: '400px',
+        maxWidth: '95vw',
+        disableClose: true, // Disable closing on backdrop click
+        data: null
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loadWorkouts(); // Reload workouts if a new one was added or an existing one was modified
-      }
-    });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.loadWorkouts(); // Reload workouts if a new one was added or an existing one was modified
+        }
+      });
+    } else {
+      this.router.navigate(['/workout', workout.Id]);
+    }
   }
 }

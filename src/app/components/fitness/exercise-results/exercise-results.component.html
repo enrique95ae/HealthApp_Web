@@ -1,0 +1,7 @@
+<div class="exercise-results-container">
+  <h2>{{ data.length }} results</h2>
+  <!-- Label displaying the number of results -->
+  <div *ngFor="let exercise of data" (click)="selectExercise(exercise)">
+    <app-exercise-card [exercise]="exercise"></app-exercise-card>
+  </div>
+</div>

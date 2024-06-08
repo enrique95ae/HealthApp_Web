@@ -54,6 +54,9 @@ import { WorkoutsService } from './services/workouts/workouts.service';
 import { WorkoutCreateComponent } from './components/fitness/workout-create/workout-create.component';
 import { ConfirmationDialogComponent } from './components/general/confirmation-dialog/confirmation-dialog.component';
 import { WorkoutDetailComponent } from './components/fitness/workout-details/workout-details.component';
+import { ExerciseCardComponent } from './components/fitness/exercise-card/exercise-card.component';
+import { ExerciseSearchComponent } from './components/fitness/exercise-search/exercise-search.component';
+import { ExerciseResultsComponent } from './components/fitness/exercise-results/exercise-results.component';
 
 
 const appRoutes: Routes = [
@@ -69,6 +72,8 @@ const appRoutes: Routes = [
   { path: 'meal-details/:id', component: MealDetailsComponent},
   { path: 'schedule', component: ScheduleComponent},
   { path: 'workouts-list', component: WorkoutsListComponent },
+  { path: 'workout/:id', component: WorkoutDetailComponent },
+  { path: 'create', component: WorkoutCreateComponent }
 ];
 
 @NgModule({
@@ -107,7 +112,10 @@ const appRoutes: Routes = [
     WorkoutsListComponent,
     WorkoutCreateComponent,
     ConfirmationDialogComponent, 
-    WorkoutDetailComponent
+    WorkoutDetailComponent,
+    ExerciseCardComponent,
+    ExerciseSearchComponent,
+    ExerciseResultsComponent
    ],
   imports: [
     BrowserModule,
