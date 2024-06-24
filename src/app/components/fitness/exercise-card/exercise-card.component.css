@@ -4,7 +4,20 @@
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: #f9f9f9;
+    background-color: #f0fce4;
+    border-color: #1E6430;
+}
+
+.title-label {
+    color: #1E6430;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.subtitle-label {
+    color: #268040;
+    font-size: large;
+    font-weight: bold;
 }
 
 .exercise-details {
@@ -21,6 +34,7 @@
     justify-content: center;
     align-items: flex-end;
     gap: 5px;
+    font-weight: bold;
 }
 
 label {

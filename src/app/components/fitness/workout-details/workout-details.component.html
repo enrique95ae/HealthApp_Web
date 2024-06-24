@@ -3,7 +3,7 @@
     <div class="top-section">
       <button class="back-button" (click)="goBack()">Back</button>
       <div class="editable-field">
-        <label for="titleInput">Title:</label>
+        <label for="titleInput" class="input-label">Title:</label>
         <textarea
           id="titleInput"
           #titleInput
@@ -17,7 +17,7 @@
         </button>
       </div>
       <div class="editable-field">
-        <label for="typeInput">Type:</label>
+        <label for="typeInput" class="input-label">Type:</label>
         <textarea
           id="typeInput"
           #typeInput
@@ -31,7 +31,7 @@
         </button>
       </div>
       <div class="editable-field">
-        <label for="descriptionInput">Description:</label>
+        <label for="descriptionInput" class="input-label">Description:</label>
         <textarea
           id="descriptionInput"
           #descriptionInput
@@ -44,7 +44,7 @@
           Edit
         </button>
       </div>
-      <label for="colorInput">Color:</label>
+      <label for="colorInput" class="input-label">Color:</label>
       <input
         id="colorInput"
         class="color-input"
@@ -61,7 +61,7 @@
   </div>
   <div class="right-column">
     <div *ngFor="let exercise of exercises">
-      <app-exercise-card [exercise]="exercise"></app-exercise-card>
+      <app-exercise-card [exercise]="exercise" class="exercise-card"></app-exercise-card>
     </div>
     <button (click)="addExercise()" class="add-exercise-button">
       Add Exercise

@@ -2,113 +2,112 @@
     display: flex;
     height: calc(100vh - 100px);
     /* Adjust based on the height of the header */
-}
-
-.left-column {
+  }
+  
+  .left-column {
     flex: 0 0 30%;
     display: flex;
     flex-direction: column;
     padding: 20px;
     justify-content: space-between;
     /* Distribute space between elements */
-}
-
-.top-section {
+  }
+  
+  .top-section {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.right-column {
+  }
+  
+  .right-column {
     flex: 1;
     padding: 20px;
     border-left: 1px solid #ccc;
     overflow-y: auto;
     /* Enable vertical scrolling */
     position: relative;
-}
-
-.color-input {
+  }
+  
+  .color-input {
     width: 50px;
     height: 50px;
     border: none;
     padding: 0;
     cursor: pointer;
-}
-
-.back-button {
+  }
+  
+  .back-button {
     align-self: flex-start;
     padding: 10px 20px;
-    background-color: white;
-    color: #268040;
+    background-color: #268040;
+    color: white;
     font-weight: bold;
     border: none;
     cursor: pointer;
     border-radius: 15px;
     white-space: nowrap;
     /* Ensure the button width adjusts to fit the text */
-}
-
-.back-button:hover {
-    background-color: #268040;
+  }
+  
+  .back-button:hover {
+    background-color: #1E6430;
     color: white;
-}
-
-.visually-hidden {
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap;
-}
-
-.editable-field {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-textarea {
+  }
+  
+  .input-label {
+    font-weight: bold;
+    color: #268040;
+    margin-right: 10px;
+    /* Ensure labels are on the same line as textareas */
+  }
+  
+  textarea {
     flex: 1;
-    width: calc(100% - 50px);
-    /* Adjust width to account for the edit button */
+    width: calc(100% - 100px);
+    /* Adjust width to account for the edit button and label */
     resize: none;
     /* Prevent manual resizing by the user */
     overflow: hidden;
     /* Hide scrollbar when not needed */
     min-height: 30px;
-    /* Minimum height for better UI */
-}
-
-textarea:disabled {
+    max-height: 40px; /* Ensure textareas are not too tall */
+    padding: 5px;
+    border-radius: 15px;
+    vertical-align: middle;
+    border-color: #1E6430;
+  }
+  
+  textarea:disabled {
     background-color: #f0f0f0;
-}
-
-.edit-button {
+  }
+  
+  .editable-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .edit-button {
     background: none;
     border: none;
     color: blue;
     cursor: pointer;
     text-decoration: underline;
-}
-
-.edit-button:hover {
+  }
+  
+  .edit-button:hover {
     text-decoration: none;
-}
-
-.bottom-buttons {
+  }
+  
+  .bottom-buttons {
     display: flex;
     gap: 10px;
     margin-top: auto;
     /* Push the buttons to the bottom */
-}
-
-.save-pdf-button {
+  }
+  
+  .save-pdf-button {
     padding: 10px 20px;
     background-color: #53BD63;
     color: white;
@@ -116,13 +115,13 @@ textarea:disabled {
     border: none;
     cursor: pointer;
     border-radius: 15px;
-}
-
-.save-pdf-button {
+  }
+  
+  .save-pdf-button:hover {
     background-color: #45A653;
-}
-
-.save-button {
+  }
+  
+  .save-button {
     padding: 10px 20px;
     background-color: #268040;
     color: white;
@@ -130,13 +129,13 @@ textarea:disabled {
     border: none;
     cursor: pointer;
     border-radius: 15px;
-}
-
-.save-button:hover {
+  }
+  
+  .save-button:hover {
     background-color: #1E6430;
-}
-
-.add-exercise-button {
+  }
+  
+  .add-exercise-button {
     padding: 10px;
     border: none;
     background-color: #28a745;
@@ -145,8 +144,10 @@ textarea:disabled {
     border-radius: 4px;
     cursor: pointer;
     align-self: center;
-}
-
-.add-exercise-button:hover {
+  }
+  
+  .add-exercise-button:hover {
     background-color: #218838;
-}
+  }
+
+  
