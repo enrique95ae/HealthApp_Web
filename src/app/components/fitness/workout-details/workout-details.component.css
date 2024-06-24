@@ -108,7 +108,7 @@ textarea:disabled {
     /* Push the buttons to the bottom */
 }
 
-.print-button {
+.save-pdf-button {
     padding: 10px 20px;
     background-color: #53BD63;
     color: white;
@@ -118,7 +118,7 @@ textarea:disabled {
     border-radius: 15px;
 }
 
-.print-button:hover {
+.save-pdf-button {
     background-color: #45A653;
 }
 

@@ -10,6 +10,7 @@ import { makeColorPaler } from '../../../utils/color.utils';
 import { forkJoin, of } from 'rxjs';
 import { concatMap, catchError, tap } from 'rxjs/operators';
 import { ExerciseSearchComponent } from '../exercise-search/exercise-search.component';
+import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-workout-detail',
@@ -141,7 +142,7 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
         this.snackBar.open('Workout saved successfully', 'Close', {
           duration: 3000
         });
-        this.loadWorkoutDetails(this.workoutId); // Reload the workout details
+        this.router.navigate(['/workouts-list']); // Navigate back to the workouts list after saving
       },
       error => {
         console.error('Error saving workout', error);
@@ -152,9 +153,89 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
     );
   }
 
-  printAsPDF(): void {
-    // Logic to print the workout details as PDF
+  saveAsPDF(): void {
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 10;
+    const lineHeight = 8;
+    let y = margin;
+  
+    // Add Workout Details
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.text(this.title, margin, y);
+    y += lineHeight;
+    doc.text(this.type, margin, y);
+    y += lineHeight;
+    doc.text(this.description, margin, y);
+    y += lineHeight * 2;
+  
+    // Add Separator
+    doc.setLineWidth(0.5);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += lineHeight;
+  
+    // Add Exercises Title
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    const exercisesTitle = 'Exercises:';
+    const titleWidth = doc.getTextWidth(exercisesTitle);
+    doc.text(exercisesTitle, (pageWidth - titleWidth) / 2, y);
+    y += lineHeight * 1.5;
+  
+    // Add Exercises
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'normal');
+  
+    this.exercises.forEach(exercise => {
+      if (y + lineHeight * 4 > pageHeight - margin) { // Check if new page is needed
+        doc.addPage();
+        y = margin;
+      }
+  
+      // Exercise Details
+      doc.setFont('helvetica', 'bold');
+      doc.text(exercise.Name, margin, y);
+      y += lineHeight;
+  
+      doc.text(exercise.Type, margin, y);
+      y += lineHeight;
+  
+      if (exercise.Equipment && exercise.Equipment.toLowerCase() !== 'none') {
+        doc.text(exercise.Equipment, margin, y);
+        y += lineHeight;
+      }
+  
+      const descriptionWidth = pageWidth - margin * 3 - 20; // Limit width for description text
+      const lines = doc.splitTextToSize(exercise.Instructions, descriptionWidth);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(11); // Make description font size smaller
+      doc.text(lines, margin, y);
+  
+      // Adjust y position to accommodate description text height
+      const descriptionHeight = lines.length * lineHeight;
+      y += descriptionHeight;
+  
+      // Sets and Reps
+      doc.setFont('helvetica', 'bold');
+      const setsRepsY = y - descriptionHeight; // Align sets/reps with the top of the description
+      doc.text(`Sets: ${exercise.Sets}`, pageWidth - margin - 20, setsRepsY);
+      doc.text(`Reps: ${exercise.Reps}`, pageWidth - margin - 20, setsRepsY + lineHeight);
+  
+      y += lineHeight * 0.5; // Adjust spacing after the exercise description
+  
+      // Add Separator for Exercises
+      doc.setLineWidth(0.1);
+      doc.setDrawColor(150);
+      doc.line(margin, y, pageWidth - margin, y);
+      y += lineHeight * 0.5; // Less space after each exercise
+    });
+  
+    // Save the PDF
+    doc.save(`${this.title}.pdf`);
   }
+
 
   goBack(): void {
     this.router.navigate(['/workouts-list']); // Navigate back to the workouts list discarding all changes

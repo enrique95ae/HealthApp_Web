@@ -11,13 +11,8 @@
           (input)="onInput($event)"
           placeholder="Enter workout title"
           title="Title"
-          >{{ title }}</textarea
-        >
-        <button
-          *ngIf="!editTitle"
-          (click)="editTitle = true"
-          class="edit-button"
-        >
+        >{{ title }}</textarea>
+        <button *ngIf="!editTitle" (click)="editTitle = true" class="edit-button">
           Edit
         </button>
       </div>
@@ -30,8 +25,7 @@
           (input)="onInput($event)"
           placeholder="Enter workout type"
           title="Type"
-          >{{ type }}</textarea
-        >
+        >{{ type }}</textarea>
         <button *ngIf="!editType" (click)="editType = true" class="edit-button">
           Edit
         </button>
@@ -45,13 +39,8 @@
           (input)="onInput($event)"
           placeholder="Enter workout description"
           title="Description"
-          >{{ description }}</textarea
-        >
-        <button
-          *ngIf="!editDescription"
-          (click)="editDescription = true"
-          class="edit-button"
-        >
+        >{{ description }}</textarea>
+        <button *ngIf="!editDescription" (click)="editDescription = true" class="edit-button">
           Edit
         </button>
       </div>
@@ -66,7 +55,7 @@
       />
     </div>
     <div class="bottom-buttons">
-      <button class="print-button" (click)="printAsPDF()">Print as PDF</button>
+      <button class="save-pdf-button" (click)="saveAsPDF()">Save as PDF</button>
       <button class="save-button" (click)="save()">Save</button>
     </div>
   </div>
