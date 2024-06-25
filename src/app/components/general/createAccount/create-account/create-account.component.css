@@ -10,7 +10,6 @@
     align-items: center;
     z-index: 100;
 }
-
 .popup {
     background-color: #fff;
     padding: 20px;
@@ -18,7 +17,6 @@
     width: 500px;
     max-width: 100%;
 }
-
 .create-account-popup {
     position: fixed;
     top: 0;
@@ -31,7 +29,6 @@
     align-items: center;
     z-index: 10;
 }
-
 .create-account-container {
     background-color: #fff;
     padding: 20px;
@@ -43,7 +40,6 @@
     margin-bottom: 25px;
     overflow: auto;
 }
-
 .close-button {
     position: absolute;
     border: none;
@@ -56,7 +52,6 @@
     border-radius: 50%;
     object-position: center;
 }
-
 button {
     width: 100%;
     padding: 10px;
@@ -67,24 +62,20 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
 button:hover {
     background: #124035;
 }
-
 label {
     display: block;
     margin-bottom: 5px;
     margin-top: 10px;
 }
-
 input,
 select {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
 }
-
 .error {
     color: red;
     font-size: 0.9em;

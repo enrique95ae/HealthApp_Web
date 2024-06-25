@@ -7,26 +7,22 @@
     background-color: #f0fce4;
     border-color: #1E6430;
 }
-
 .title-label {
     color: #1E6430;
     font-size: larger;
     font-weight: bold;
 }
-
 .subtitle-label {
     color: #268040;
     font-size: large;
     font-weight: bold;
 }
-
 .exercise-details {
     flex: 0 0 80%;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-
 .exercise-sets {
     flex: 1;
     display: flex;
@@ -36,7 +32,6 @@
     gap: 5px;
     font-weight: bold;
 }
-
 label {
     font-size: 14px;
     color: #333;

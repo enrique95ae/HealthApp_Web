@@ -3,15 +3,10 @@
     flex-wrap: wrap;
     gap: 10px;
     margin: 20px;
-    /* Added margin around the list component */
     justify-content: center;
-    /* Center the cards horizontally */
 }
-
 app-workout-card {
     flex: 0 0 150px;
-    /* Fixed size for the cards */
     height: 150px;
-    /* Maintain square aspect ratio */
     box-sizing: border-box;
 }

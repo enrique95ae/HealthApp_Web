@@ -10,11 +10,9 @@
     border-radius: 10px;
     z-index: 1000;
 }
-
 .error-popup p {
     margin: 0 0 10px;
 }
-
 .error-popup button {
     background-color: #721c24;
     color: white;
@@ -23,7 +21,6 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
 .error-popup button:hover {
     background-color: #a71d2a;
 }

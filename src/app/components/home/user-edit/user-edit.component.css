@@ -2,23 +2,19 @@
     background-color: #f4fdf2;
     padding: 25px;
 }
-
 h2{
     padding: 10px;
 }
-
 .user-edit-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
 .dialog-actions {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
 }
-
 .save-button,
 .cancel-button {
     background-color: #268040;
@@ -30,15 +26,12 @@ h2{
     font-size: 1rem;
     margin-top: 20px;
 }
-
 .cancel-button {
     background-color: #d9534f;
 }
-
 .save-button:hover {
     background-color: #124035;
 }
-
 .cancel-button:hover {
     background-color: #c9302c;
 }

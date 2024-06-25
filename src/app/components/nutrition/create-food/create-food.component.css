@@ -7,26 +7,21 @@
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
-
 h4 {
     text-align: center;
     margin-bottom: 20px;
 }
-
 .form-group {
     margin-bottom: 15px;
 }
-
 label {
     display: block;
     margin-bottom: 5px;
 }
-
 input,
 select {
     width: 100%;
@@ -35,7 +30,6 @@ select {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
 button {
     width: 100%;
     padding: 10px;
@@ -46,33 +40,25 @@ button {
     cursor: pointer;
     margin-top: 20px;
 }
-
 .secondaryBtn {
     background-color: #f4fdf2;
     color: #268040;
 }
-
 button:hover {
     background-color: #124035;
 }
-
 .error {
     color: red;
     font-size: 0.9em;
 }
-
-/* Flexbox layout for two columns */
 .form-row {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
-
 .form-group-half {
     flex: 1 1 calc(50% - 20px);
 }
-
-/* Ensure single column layout on smaller screens */
 @media (max-width: 768px) {
     .form-group-half {
         flex: 1 1 100%;

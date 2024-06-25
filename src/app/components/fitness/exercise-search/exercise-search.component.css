@@ -2,7 +2,6 @@
     width: 100%;
     max-width: 1000px;
     height: 85vh;
-    /* Take more than 80% of the screen vertically */
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -11,30 +10,23 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    /* For positioning the fixed button */
 }
-
 .scrollable-content {
     overflow-y: auto;
-    /* Enable vertical scrolling */
     flex-grow: 1;
     padding-bottom: 60px;
-    /* Add space for the fixed button */
 }
-
 .dropdown-search {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
 }
-
 .muscle-dropdown {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-top: 5px;
 }
-
 .search-button {
     margin-top: 10px;
     padding: 5px 10px;
@@ -45,26 +37,21 @@
     cursor: pointer;
     align-self: flex-start;
 }
-
 .search-button:hover {
     background-color: #0056b3;
 }
-
 hr {
     margin: 20px 0;
 }
-
 .input-field {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
 }
-
 .input-field label {
     margin-bottom: 5px;
     font-weight: bold;
 }
-
 .input-field input,
 .input-field textarea {
     width: 100%;
@@ -72,14 +59,10 @@ hr {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 .input-field textarea {
     max-height: 100px;
-    /* Limit the height */
     overflow-y: auto;
-    /* Enable vertical scrolling */
 }
-
 .add-button {
     padding: 10px;
     border: none;
@@ -89,12 +72,10 @@ hr {
     border-radius: 4px;
     cursor: pointer;
     position: absolute;
-    /* Fix the button at the bottom */
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
 }
-
 .add-button:hover {
     background-color: #218838;
 }

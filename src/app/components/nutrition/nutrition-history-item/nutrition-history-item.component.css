@@ -9,43 +9,33 @@
     height: 100%;
     box-sizing: border-box;
 }
-
 .header {
     margin-bottom: 10px;
 }
-
 .title {
     font-weight: bold;
     margin: 0;
 }
-
 .date {
     color: #888;
     font-size: 0.9rem;
 }
-
 .info {
     margin-bottom: 10px;
     flex-grow: 1;
-    /* Ensure it grows to take available space */
 }
-
 .macros {
     display: flex;
     flex-direction: column;
     gap: 5px;
     margin-top: 5px;
 }
-
 .macros div {
     font-size: 0.9rem;
 }
-
 .macros div span {
     font-weight: bold;
-    /* Make the macro labels bold */
 }
-
 .details-button {
     background-color: #268040;
     color: white;
@@ -55,7 +45,6 @@
     cursor: pointer;
     align-self: flex-end;
 }
-
 .details-button:hover {
     background-color: #1b5e2d;
 }

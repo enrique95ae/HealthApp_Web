@@ -6,19 +6,15 @@
     padding: 35px;
     margin: 10px;
     flex: 1 1 calc(33.333% - 20px);
-    /* Adjust the width of the cards */
     box-sizing: border-box;
 }
-
 .food-card h4 {
     margin-top: 0;
     margin-bottom: 10px;
 }
-
 .food-card p {
     margin: 5px 0;
 }
-
 @media (max-width: 768px) {
     .food-card {
         flex: 1 1 100%;

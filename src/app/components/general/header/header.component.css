@@ -1,24 +1,19 @@
 .navbar {
     background-color: #f0fce4;
 }
-
 .navbar-brand span {
     color: #2F594F;
     font-weight: bold;
 }
-
 .ml-2{
     margin-left: 10px;
 }
-
 .nav-link {
     color: #53BD63;
 }
-
 .nav-link:hover {
     color: #53BD63;
 }
-
 .logo {
     height: 80px;
     width: 80px;
@@ -26,15 +21,12 @@
     object-fit: cover;
     background-color: white;
 }
-
 .active-link {
     color: #FF8042 !important;
 }
-
 .dropdown-menu {
     background-color: #f0fce4;
 }
-
 .dropdown-toggle.active-link {
     color: #FF8042 !important;
 }

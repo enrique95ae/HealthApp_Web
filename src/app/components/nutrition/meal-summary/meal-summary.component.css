@@ -7,11 +7,9 @@
     border-radius: 25px;
     justify-content: space-between;
 }
-
 .summary-item {
     font-weight: bold;
 }
-
 button.finish-meal-button {
     background-color: #268040;
     color: white;
@@ -20,11 +18,9 @@ button.finish-meal-button {
     border-radius: 5px;
     cursor: pointer;
 }
-
 button.finish-meal-button:hover {
     background-color: #124035;
 }
-
 button.finish-meal-button:disabled {
     background-color: #cccccc;
     color: #666666;

@@ -5,17 +5,13 @@
     height: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    /* Ensure no horizontal overflow */
 }
-
 .calendar-header {
     display: grid;
     grid-template-columns: auto repeat(7, 1fr);
-    /* Added auto for the hour column */
     gap: 2px;
     padding: 10px 0;
 }
-
 .day-label {
     text-align: center;
     font-weight: bold;
@@ -23,21 +19,17 @@
     padding: 10px;
     border: 1px solid #ddd;
 }
-
 .calendar-body {
     display: flex;
     flex-grow: 1;
     overflow-y: auto;
-    /* Enable vertical scrolling */
 }
-
 .hour-column {
     display: flex;
     flex-direction: column;
     gap: 2px;
     width: 80px;
 }
-
 .hour-label {
     text-align: right;
     padding: 10px;
@@ -45,22 +37,18 @@
     border: 1px solid #ddd;
     min-height: 50px;
 }
-
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(24, 1fr);
-    /* 24 rows for 24 hours */
     gap: 2px;
     flex-grow: 1;
 }
-
 .grid-cell {
     border: 1px solid #ddd;
     background-color: #fff;
     min-height: 50px;
 }
-
 .empty-cell {
     background-color: transparent;
     border: none;

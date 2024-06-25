@@ -3,13 +3,11 @@
     max-width: 800px;
     margin: 25px auto;
 }
-
 .search-bar {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
-
 input[type="text"] {
     flex: 1;
     padding: 8px;
@@ -17,7 +15,6 @@ input[type="text"] {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
 button {
     padding: 8px 16px;
     background-color: #268040;
@@ -26,11 +23,9 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
 button:hover {
     background-color: #124035;
 }
-
 .no-results {
     color: red;
     margin-top: 10px;

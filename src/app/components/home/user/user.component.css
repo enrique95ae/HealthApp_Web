@@ -8,7 +8,6 @@
     margin: 0 auto;
     overflow: auto;
 }
-
 .profile-pic-container {
     flex: 0 0 30%;
     display: flex;
@@ -16,7 +15,6 @@
     align-items: center;
     justify-content: center;
 }
-
 .profile-pic {
     width: 150px;
     height: 150px;
@@ -24,7 +22,6 @@
     object-fit: cover;
     margin-bottom: 10px;
 }
-
 .logout-button {
     background-color: #268040;
     color: #fff;
@@ -34,11 +31,9 @@
     cursor: pointer;
     font-size: 1rem;
 }
-
 .logout-button:hover {
     background-color: #124035;
 }
-
 .user-info {
     flex: 1;
     display: flex;
@@ -46,27 +41,22 @@
     justify-content: center;
     padding-left: 20px;
 }
-
 .user-row {
     display: flex;
     margin-bottom: 10px;
 }
-
 .user-label {
     font-weight: bold;
     margin-right: 10px;
 }
-
 .user-data {
     color: #2f594f;
 }
-
 .user-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .edit-button {
     background-color: #f4fdf2;
     color: #268040;
@@ -76,7 +66,6 @@
     cursor: pointer;
     font-size: 1rem;
 }
-
 .edit-button:hover {
     background-color: #268040;
     color: #fff;

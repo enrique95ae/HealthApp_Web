@@ -1,35 +1,26 @@
 .container {
     padding: 20px;
-    /* Added padding to the container */
     background-color: #f0fce4;
-    /* Set background color of the popup */
     color: #2f594f;
-    /* Set text color */
 }
-
 div {
     margin-bottom: 10px;
 }
-
 label {
     display: block;
     margin-bottom: 5px;
 }
-
 input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
     color: #2f594f;
-    /* Set text color for inputs */
 }
-
 .actions {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
-
 button {
     padding: 10px 20px;
     background-color: #268040;
@@ -38,7 +29,6 @@ button {
     cursor: pointer;
     border-radius: 5px;
 }
-
 button:hover {
     background-color: #206d36;
 }

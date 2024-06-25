@@ -10,12 +10,10 @@
     align-items: center;
     text-align: center;
 }
-
 .doughnut-title {
     margin-bottom: 10px;
     font-size: medium;
 }
-
 canvas {
     width: 100% !important;
     height: 200px ;
