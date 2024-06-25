@@ -131,7 +131,6 @@ export class ProgressionComponent implements OnInit, OnChanges, OnDestroy {
           const data = sortedResponse.map(entry => ({ label: entry.EntryDate, data: [entry.Weight] }));
           this.data = data;
 
-          // Update user data with the most recent weight
           if (sortedResponse.length > 0) {
             const mostRecentWeight = sortedResponse[sortedResponse.length - 1].Weight;
             const user = JSON.parse(localStorage.getItem('user') || '{}');

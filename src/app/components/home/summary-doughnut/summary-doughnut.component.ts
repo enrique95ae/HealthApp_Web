@@ -111,12 +111,10 @@ export class SummaryDoughnutComponent implements OnInit {
     const colors = ['#FF6384', '#36A2EB', '#FFCE56'];
     const fadedColors = colors.map(color => this.fadeColor(color, 0.3));
 
-    // Cap consumed values at their respective total values
     const cappedConsumedFat = Math.min(this.consumedFat, this.totalFat);
     const cappedConsumedProtein = Math.min(this.consumedProtein, this.totalProtein);
     const cappedConsumedCarbs = Math.min(this.consumedCarbs, this.totalCarbs);
 
-    // Use actual values for the data
     const totalData = [
       this.totalFat - cappedConsumedFat,
       this.totalProtein - cappedConsumedProtein,
@@ -132,7 +130,6 @@ export class SummaryDoughnutComponent implements OnInit {
     const data = [];
     const backgroundColor = [];
 
-    // Add data for each segment and its consumed part
     for (let i = 0; i < totalData.length; i++) {
       data.push(totalData[i]);
       backgroundColor.push(fadedColors[i]);

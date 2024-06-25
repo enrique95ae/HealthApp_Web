@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   userId: number = 1;
   private baseUrl = environment.baseUrl;
 
-  // Macros data
   macrosData: any = {};
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -61,7 +60,6 @@ export class HomeComponent implements OnInit {
           const data = sortedResponse.map(entry => ({ label: entry.EntryDate, data: [entry.Weight] }));
           this.progressionData = data;
 
-          // Update user data with the most recent weight
           if (sortedResponse.length > 0) {
             const mostRecentWeight = sortedResponse[sortedResponse.length - 1].Weight;
             const user = JSON.parse(localStorage.getItem('user') || '{}');

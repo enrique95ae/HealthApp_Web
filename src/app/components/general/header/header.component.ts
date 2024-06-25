@@ -23,6 +23,5 @@ export class HeaderComponent {
   }
 
   onRouterLinkActive(): void {
-    // This function is triggered when a router link is active.
   }
 }

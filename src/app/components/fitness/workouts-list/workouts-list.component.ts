@@ -27,7 +27,6 @@ export class WorkoutsListComponent implements OnInit {
           backgroundColor: workout.Color,
           isAddNew: false
         }));
-        // Add the "Add New" card manually
         this.workouts.unshift({
           Id: 0,
           Title: '',

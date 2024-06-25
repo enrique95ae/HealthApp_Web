@@ -35,7 +35,6 @@ export class UserEditComponent {
       },
       error => {
         console.error('Error updating user:', error);
-        // Optionally show an error message to the user
       }
     );
   }

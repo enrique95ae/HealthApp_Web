@@ -19,7 +19,6 @@ export class MealListComponent implements OnInit {
       this.fetchMeals(user.Id);
     });
 
-    // Fetch meals if the user is already logged in (e.g., on page refresh)
     const userData = this.authService.getUserData();
     if (userData) {
       console.log('User already logged in:', userData);

@@ -161,7 +161,6 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
     const lineHeight = 8;
     let y = margin;
   
-    // Add Workout Details
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(14);
     doc.text(this.title, margin, y);
@@ -171,12 +170,10 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
     doc.text(this.description, margin, y);
     y += lineHeight * 2;
   
-    // Add Separator
     doc.setLineWidth(0.5);
     doc.line(margin, y, pageWidth - margin, y);
     y += lineHeight;
   
-    // Add Exercises Title
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     const exercisesTitle = 'Exercises:';
@@ -184,7 +181,6 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
     doc.text(exercisesTitle, (pageWidth - titleWidth) / 2, y);
     y += lineHeight * 1.5;
   
-    // Add Exercises
     doc.setFontSize(14);
     doc.setFont('helvetica', 'normal');
   
@@ -194,7 +190,6 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
         y = margin;
       }
   
-      // Exercise Details
       doc.setFont('helvetica', 'bold');
       doc.text(exercise.Name, margin, y);
       y += lineHeight;
@@ -213,11 +208,9 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
       doc.setFontSize(11); // Make description font size smaller
       doc.text(lines, margin, y);
   
-      // Adjust y position to accommodate description text height
       const descriptionHeight = lines.length * lineHeight;
       y += descriptionHeight;
   
-      // Sets and Reps
       doc.setFont('helvetica', 'bold');
       const setsRepsY = y - descriptionHeight; // Align sets/reps with the top of the description
       doc.text(`Sets: ${exercise.Sets}`, pageWidth - margin - 20, setsRepsY);
@@ -225,14 +218,12 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
   
       y += lineHeight * 0.5; // Adjust spacing after the exercise description
   
-      // Add Separator for Exercises
       doc.setLineWidth(0.1);
       doc.setDrawColor(150);
       doc.line(margin, y, pageWidth - margin, y);
       y += lineHeight * 0.5; // Less space after each exercise
     });
   
-    // Save the PDF
     doc.save(`${this.title}.pdf`);
   }
 

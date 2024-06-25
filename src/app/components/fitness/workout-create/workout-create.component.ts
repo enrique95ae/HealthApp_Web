@@ -37,7 +37,6 @@ export class WorkoutCreateComponent {
       this.originalColor = data.Color; // Set original color
       this.isEditMode = true;
       this.workoutId = data.Id;
-      // Fetch existing exercise sets for the workout
       this.workoutsService.getExerciseSets(data.Id).subscribe(exerciseSets => {
         this.exerciseSets = exerciseSets;
       });
