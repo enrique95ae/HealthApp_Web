@@ -50,19 +50,19 @@ export class NutritionHistoryComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    console.log('Initializing component'); // Debugging statement
+    console.log('Initializing component'); 
     this.fetchNutritionHistory(this.currentPage);
   }
 
   fetchNutritionHistory(page: number): void {
     const url = `${this.baseUrl}/meals/user_meals/${this.userId}?page=${page}&page_size=${this.itemsPerPage}`;
-    console.log('Fetching nutrition history from:', url); // Debugging statement
+    console.log('Fetching nutrition history from:', url); 
     this.http.get<NutritionHistoryResponse>(url).subscribe({
       next: (response) => {
-        console.log('Fetched data:', response);  // Debugging statement
+        console.log('Fetched data:', response);  
         if (response && response.items) {
           this.historyItems = response.items;
-          console.log('History items set:', this.historyItems); // Debugging statement
+          console.log('History items set:', this.historyItems); 
           this.totalPages = response.totalPages;
           this.updateDisplayedItems();
         } else {
@@ -76,16 +76,16 @@ export class NutritionHistoryComponent implements OnInit {
   }
 
   updateDisplayedItems(): void {
-    console.log('Updating displayed items'); // Debugging statement
+    console.log('Updating displayed items'); 
     this.displayedItems = this.historyItems;
-    console.log('Displayed items:', this.displayedItems);  // Debugging statement
+    console.log('Displayed items:', this.displayedItems);  
   }
 
   goToPage(page: number): void {
     if (page < 1 || page > this.totalPages) {
       return;
     }
-    console.log('Going to page:', page); // Debugging statement
+    console.log('Going to page:', page); 
     this.currentPage = page;
     this.fetchNutritionHistory(page);
   }

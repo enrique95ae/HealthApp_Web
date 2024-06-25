@@ -31,7 +31,7 @@ export class SummaryDoughnutComponent implements OnInit {
     maintainAspectRatio: true,
     plugins: {
       legend: {
-        display: false,  // Disable the default legend
+        display: false,  
       },
       datalabels: {
         color: 'white',

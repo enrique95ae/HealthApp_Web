@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../models/user.model';
 import { MatDialog } from '@angular/material/dialog';
-import { UserEditComponent } from '../user-edit/user-edit.component';  // Adjust the path as needed
+import { UserEditComponent } from '../user-edit/user-edit.component';  
 
 @Component({
   selector: 'app-user',

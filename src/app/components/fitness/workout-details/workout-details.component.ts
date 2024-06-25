@@ -61,7 +61,7 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
       this.color = data.Color;
       this.exercises = data.Exercises.map(exercise => ({
         ...exercise,
-        isNew: false // Mark existing exercises as not new
+        isNew: false 
       }));
 
       setTimeout(() => {
@@ -102,7 +102,7 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
       }),
       concatMap(workout => {
         const newExerciseRequests = this.exercises
-          .filter(exercise => exercise.isNew) // Only process new exercises
+          .filter(exercise => exercise.isNew) 
           .map((exercise, index) =>
             this.workoutsService.addExercise(exercise).pipe(
               tap(response => {
@@ -112,8 +112,8 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
                 const addedExercise = response.duplicate ? response.exercise : response;
                 const exerciseSet: ExerciseSet = {
                   Exercise_Id: addedExercise.Id,
-                  Sets: exercise.Sets || 1, // Default to 1 if undefined
-                  Reps: exercise.Reps || 1, // Default to 1 if undefined
+                  Sets: exercise.Sets || 1, 
+                  Reps: exercise.Reps || 1, 
                   Order: index + 1
                 };
                 return this.workoutsService.addExerciseSet(exerciseSet).pipe(
@@ -131,18 +131,18 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
               }),
               catchError(error => {
                 console.error('Error adding exercise:', error);
-                return of(null); // Continue with the next exercise
+                return of(null); 
               })
             )
           );
-        return forkJoin(newExerciseRequests.filter(req => req !== null)); // Filter out null requests
+        return forkJoin(newExerciseRequests.filter(req => req !== null)); 
       })
     ).subscribe(
       () => {
         this.snackBar.open('Workout saved successfully', 'Close', {
           duration: 3000
         });
-        this.router.navigate(['/workouts-list']); // Navigate back to the workouts list after saving
+        this.router.navigate(['/workouts-list']); 
       },
       error => {
         console.error('Error saving workout', error);
@@ -185,7 +185,7 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
     doc.setFont('helvetica', 'normal');
   
     this.exercises.forEach(exercise => {
-      if (y + lineHeight * 4 > pageHeight - margin) { // Check if new page is needed
+      if (y + lineHeight * 4 > pageHeight - margin) { 
         doc.addPage();
         y = margin;
       }
@@ -202,26 +202,26 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
         y += lineHeight;
       }
   
-      const descriptionWidth = pageWidth - margin * 3 - 20; // Limit width for description text
+      const descriptionWidth = pageWidth - margin * 3 - 20; 
       const lines = doc.splitTextToSize(exercise.Instructions, descriptionWidth);
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(11); // Make description font size smaller
+      doc.setFontSize(11); 
       doc.text(lines, margin, y);
   
       const descriptionHeight = lines.length * lineHeight;
       y += descriptionHeight;
   
       doc.setFont('helvetica', 'bold');
-      const setsRepsY = y - descriptionHeight; // Align sets/reps with the top of the description
+      const setsRepsY = y - descriptionHeight; 
       doc.text(`Sets: ${exercise.Sets}`, pageWidth - margin - 20, setsRepsY);
       doc.text(`Reps: ${exercise.Reps}`, pageWidth - margin - 20, setsRepsY + lineHeight);
   
-      y += lineHeight * 0.5; // Adjust spacing after the exercise description
+      y += lineHeight * 0.5; 
   
       doc.setLineWidth(0.1);
       doc.setDrawColor(150);
       doc.line(margin, y, pageWidth - margin, y);
-      y += lineHeight * 0.5; // Less space after each exercise
+      y += lineHeight * 0.5; 
     });
   
     doc.save(`${this.title}.pdf`);
@@ -229,7 +229,7 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
 
 
   goBack(): void {
-    this.router.navigate(['/workouts-list']); // Navigate back to the workouts list discarding all changes
+    this.router.navigate(['/workouts-list']); 
   }
 
   addExercise(): void {
@@ -239,8 +239,8 @@ export class WorkoutDetailComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.componentInstance.addExerciseEvent.subscribe((newExercise: WorkoutExerciseDetails) => {
-      this.exercises.push({ ...newExercise, isNew: true }); // Mark new exercises as new
-      dialogRef.close(); // Close the search component after adding the exercise
+      this.exercises.push({ ...newExercise, isNew: true }); 
+      dialogRef.close(); 
     });
   }
 }

@@ -27,7 +27,7 @@ export class CreateAccountComponent {
   isValidDob = true;
   isValidPassword = true;
   passwordsMatch = true;
-  baseUrl = 'http://127.0.0.1:5000';  // Replace with your actual API URL
+  baseUrl = 'http://127.0.0.1:5000';  
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 

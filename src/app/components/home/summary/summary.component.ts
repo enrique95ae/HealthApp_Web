@@ -23,7 +23,7 @@ export class SummaryComponent implements OnInit {
     if (storedBmr) {
       const parsedBmr = JSON.parse(storedBmr);
       console.log('PARSED: ' + parsedBmr.bmr);
-      this.bmr = parsedBmr.bmr || 0; // Safely accessing the bmr property
+      this.bmr = parsedBmr.bmr || 0; 
       console.log('BMR: ' + this.bmr);
     }
   }

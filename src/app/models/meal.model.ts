@@ -17,10 +17,10 @@ export interface Food {
 export interface Meal {
   Id: number;
   CreationDate: string;
-  CreationTime: string;  // Add CreationTime field
-  HourPeriod: string;  // Add HourPeriod field
+  CreationTime: string;  
+  HourPeriod: string;  
   Title: string;
   Score: number;
   Foods: Food[];
-  totalCalories?: number;  // Optional field for calculated total calories
+  totalCalories?: number;  
 }

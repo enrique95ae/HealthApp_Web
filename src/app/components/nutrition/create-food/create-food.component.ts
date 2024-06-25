@@ -29,7 +29,7 @@ export class CreateFoodComponent {
       this.foodsService.createFood(this.food).subscribe({
         next: () => {
           alert('Food created successfully!');
-          this.router.navigate(['/']); // Navigate to the home page
+          this.router.navigate(['/']); 
         },
         error: (error) => {
           alert('Failed to create food: ' + error.message);

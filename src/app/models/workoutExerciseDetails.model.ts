@@ -9,5 +9,5 @@ export interface WorkoutExerciseDetails {
   Reps: number;
   Sets: number;
   SetOrder: number;
-  isNew?: boolean; // Add this flag to indicate if the exercise is new
+  isNew?: boolean; 
 }

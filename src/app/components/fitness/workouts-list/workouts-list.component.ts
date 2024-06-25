@@ -47,13 +47,13 @@ export class WorkoutsListComponent implements OnInit {
       const dialogRef = this.dialog.open(WorkoutCreateComponent, {
         width: '400px',
         maxWidth: '95vw',
-        disableClose: true, // Disable closing on backdrop click
+        disableClose: true, 
         data: null
       });
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.loadWorkouts(); // Reload workouts if a new one was added or an existing one was modified
+          this.loadWorkouts(); 
         }
       });
     } else {

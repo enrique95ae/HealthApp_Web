@@ -35,16 +35,16 @@ export class NutritionHistoryItemComponent implements OnInit, OnChanges {
   @Input() item!: NutritionHistoryItem;
 
   constructor(private router: Router) {
-    console.log('Constructor Item:', this.item);  // Debugging statement
+    console.log('Constructor Item:', this.item);  
   }
 
   ngOnInit(): void {
-    console.log('OnInit Item:', this.item);  // Debugging statement
+    console.log('OnInit Item:', this.item);  
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['item']) {
-      console.log('OnChanges Item:', changes['item'].currentValue);  // Debugging statement
+      console.log('OnChanges Item:', changes['item'].currentValue);  
     }
   }
 

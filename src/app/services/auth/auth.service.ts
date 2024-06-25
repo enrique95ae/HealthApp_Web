@@ -1,8 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../models/user.model';  // Adjust the path as needed
-import { environment } from '../../env/env';  // Adjust the path as needed
+import { User } from '../../models/user.model';  
+import { environment } from '../../env/env';  
 
 @Injectable({
   providedIn: 'root'
@@ -26,20 +26,20 @@ export class AuthService {
   }
 
   login(user: User): void {
-    console.log('Setting user data in localStorage and updating state:', user);  // Debugging statement
+    console.log('Setting user data in localStorage and updating state:', user);  
     localStorage.setItem('user', JSON.stringify(user));
     this.userData = user;
     this.loggedIn.next(true);
-    this.userLoggedIn.emit(user);  // Emit the event
+    this.userLoggedIn.emit(user);  
     this.fetchBmr();
     this.fetchMacros();
   }
 
   logout(): void {
-    console.log('Removing user data from localStorage and updating state');  // Debugging statement
+    console.log('Removing user data from localStorage and updating state');  
     localStorage.removeItem('user');
-    localStorage.removeItem('bmr');  // Remove BMR from localStorage on logout
-    localStorage.removeItem('macros');  // Remove Macros from localStorage on logout
+    localStorage.removeItem('bmr');  
+    localStorage.removeItem('macros');  
     this.userData = null;
     this.loggedIn.next(false);
   }

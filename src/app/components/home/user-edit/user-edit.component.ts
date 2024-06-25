@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { User } from '../../../models/user.model';  // Adjust the path as needed
-import { UsersService } from '../../../services/users/users.service';  // Adjust the path as needed
+import { User } from '../../../models/user.model';  
+import { UsersService } from '../../../services/users/users.service';  
 
 @Component({
   selector: 'app-user-edit',
@@ -31,7 +31,7 @@ export class UserEditComponent {
     
     this.userService.updateUser(userId, updateData).subscribe(
       updatedUser => {
-        this.dialogRef.close(updatedUser);  // Pass back the updated data
+        this.dialogRef.close(updatedUser);  
       },
       error => {
         console.error('Error updating user:', error);

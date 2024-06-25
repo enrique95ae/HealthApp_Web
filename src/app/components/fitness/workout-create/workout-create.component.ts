@@ -4,7 +4,7 @@ import { WorkoutsService } from '../../../services/workouts/workouts.service';
 import { Workout } from '../../../models/workout.model';
 import { makeColorPaler } from '../../../utils/color.utils';
 import { ConfirmationDialogComponent } from '../../general/confirmation-dialog/confirmation-dialog.component';
-import { WorkoutDetailComponent } from '../../fitness/workout-details/workout-details.component'; // Adjusted import path
+import { WorkoutDetailComponent } from '../../fitness/workout-details/workout-details.component'; 
 import { ExerciseSet } from '../../../models/exerciseSet.model';
 
 @Component({
@@ -16,12 +16,12 @@ export class WorkoutCreateComponent {
   title: string = '';
   type: string = '';
   description: string = '';
-  color: string = '#000000'; // Default color
-  originalColor: string = ''; // Store the original color to detect changes
+  color: string = '#000000'; 
+  originalColor: string = ''; 
   isEditMode: boolean = false;
   workoutId: number | null = null;
   hasUnsavedChanges: boolean = false;
-  exerciseSets: ExerciseSet[] = []; // Store the exercise sets
+  exerciseSets: ExerciseSet[] = []; 
 
   constructor(
     private workoutsService: WorkoutsService,
@@ -34,7 +34,7 @@ export class WorkoutCreateComponent {
       this.type = data.Type;
       this.description = data.Description;
       this.color = data.Color;
-      this.originalColor = data.Color; // Set original color
+      this.originalColor = data.Color; 
       this.isEditMode = true;
       this.workoutId = data.Id;
       this.workoutsService.getExerciseSets(data.Id).subscribe(exerciseSets => {
@@ -61,7 +61,7 @@ export class WorkoutCreateComponent {
       this.workoutsService.updateWorkout(workout).subscribe(
         response => {
           console.log('Workout updated successfully', response);
-          this.dialogRef.close(true); // Close the dialog and pass success status
+          this.dialogRef.close(true); 
         },
         error => {
           console.error('Error updating workout', error);
@@ -71,7 +71,7 @@ export class WorkoutCreateComponent {
       this.workoutsService.addWorkout(workout).subscribe(
         response => {
           console.log('Workout added successfully', response);
-          this.dialogRef.close(true); // Close the dialog and pass success status
+          this.dialogRef.close(true); 
         },
         error => {
           console.error('Error adding workout', error);
@@ -102,7 +102,7 @@ export class WorkoutCreateComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.exerciseSets = result; // Update exercise sets after closing detail dialog
+        this.exerciseSets = result; 
       }
     });
   }

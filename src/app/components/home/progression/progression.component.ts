@@ -79,8 +79,8 @@ export class ProgressionComponent implements OnInit, OnChanges, OnDestroy {
           ...this.lineChartOptions.scales,
           y: {
             beginAtZero: true,
-            min: Math.floor(minYValue) - 5,  // Set min slightly below the lowest value
-            max: Math.ceil(maxYValue) + 5    // Set max slightly above the highest value
+            min: Math.floor(minYValue) - 5,  
+            max: Math.ceil(maxYValue) + 5    
           }
         }
       }

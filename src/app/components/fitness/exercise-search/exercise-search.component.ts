@@ -11,7 +11,7 @@ import { environment } from '../../../env/env';
   styleUrls: ['./exercise-search.component.css']
 })
 export class ExerciseSearchComponent {
-  @Output() addExerciseEvent = new EventEmitter<WorkoutExerciseDetails>(); // Event emitter
+  @Output() addExerciseEvent = new EventEmitter<WorkoutExerciseDetails>(); 
 
   muscles: string[] = [
     'abdominals', 'abductors', 'adductors', 'biceps', 'calves', 'chest', 
@@ -19,7 +19,7 @@ export class ExerciseSearchComponent {
     'neck', 'quadriceps', 'traps', 'triceps'
   ];
 
-  private apiKey = environment.ninjaApiKey; // Use the API key from the environment configuration
+  private apiKey = environment.ninjaApiKey; 
 
   selectedMuscle: string = '';
   exercise: any = {
@@ -41,16 +41,16 @@ export class ExerciseSearchComponent {
     this.http.get<any[]>(url, { headers }).subscribe(
       (results) => {
         const transformedResults: WorkoutExerciseDetails[] = results.map(result => ({
-          Id: 0, // or any appropriate value
+          Id: 0, 
           Name: result.name,
           Type: result.type,
           Muscle: result.muscle,
           Equipment: result.equipment,
           Difficulty: result.difficulty,
           Instructions: result.instructions,
-          Reps: 0, // Default value or set appropriately
-          Sets: 0, // Default value or set appropriately
-          SetOrder: 0 // Default value or set appropriately
+          Reps: 0, 
+          Sets: 0, 
+          SetOrder: 0 
         }));
 
         const dialogRef = this.dialog.open(ExerciseResultsComponent, {
@@ -83,7 +83,7 @@ export class ExerciseSearchComponent {
 
   addExercise() {
     const newExercise: WorkoutExerciseDetails = {
-      Id: 0, // This can be set appropriately
+      Id: 0, 
       Name: this.exercise.name,
       Type: this.exercise.type,
       Muscle: this.exercise.muscle,
@@ -92,9 +92,9 @@ export class ExerciseSearchComponent {
       Instructions: this.exercise.instructions,
       Reps: this.exercise.reps,
       Sets: this.exercise.sets,
-      SetOrder: 0 // This can be set appropriately
+      SetOrder: 0 
     };
 
-    this.addExerciseEvent.emit(newExercise); // Emit the new exercise
+    this.addExerciseEvent.emit(newExercise); 
   }
 }

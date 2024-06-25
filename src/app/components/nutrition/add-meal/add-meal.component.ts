@@ -33,7 +33,7 @@ export class AddMealComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initializeFoodComponent(); // Ensure one empty food component on load
+    this.initializeFoodComponent(); 
     console.log('Initial empty food component added:', this.foods);
   }
 
@@ -54,7 +54,7 @@ export class AddMealComponent implements OnInit {
     if (this.foods[index]) {
       this.foods[index] = food;
       console.log('Food name changed:', food, 'at index:', index);
-      this.foods = [...this.foods]; // Create a new array reference
+      this.foods = [...this.foods]; 
       this.updateMealSummary();
     }
   }

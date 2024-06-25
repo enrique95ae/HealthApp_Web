@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
   @ViewChild('calendarBody') calendarBody: any;
-  cells: any[] = new Array(7 * 24).fill(null); // 24 hours * 7 days
+  cells: any[] = new Array(7 * 24).fill(null); 
   hours: string[] = [];
 
   constructor() {}
